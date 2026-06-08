@@ -11,6 +11,7 @@
 </head>
 <body>
 
+  <!-- ЭКРАН ЗАГРУЗКИ С ПОЛОСКОЙ -->
   <div id="preloader">
     <div class="preloader-logo">BYBOLDENKOI</div>
     <div class="preloader-bar"><div class="preloader-progress"></div></div>
@@ -174,8 +175,11 @@
         </a>
       </div>
     </div>
-    <p class="footer-copy">© 2026 BYBOLDENKOI. Все права защищены.</p>
-    <p class="footer-author">Сайт разработал <a href="https://www.instagram.com/pilnik1/" target="_blank" rel="noopener noreferrer">Alexander</a></p>
+    
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 BYBOLDENKOI. Все права защищены.</p>
+      <p class="footer-author">Сайт разработал <a href="https://www.instagram.com/pilnik1/" target="_blank" rel="noopener noreferrer">Alexander</a></p>
+    </div>
   </footer>
 
   <button class="scroll-top" id="scrollTop" aria-label="Наверх">
@@ -186,26 +190,20 @@
   </button>
 
   <script>
-    // Принудительный сброс скролла в начало при обновлении страницы
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
-
+    
     window.addEventListener('load', () => {
       const preloader = document.getElementById('preloader');
-      
-      // Даем контенту полсекунды на отрисовку
       setTimeout(() => {
         preloader.classList.add('loaded');
-        
-        // Удаляем элемент из кода через 0.5 сек (время анимации fade)
         setTimeout(() => {
           preloader.style.display = 'none';
         }, 500);
       }, 300);
     });
 
-    // Кнопка «наверх»
     const btn = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
       const scrolled = window.scrollY;
@@ -220,20 +218,15 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Плавное появление блоков при скролле (Многоразовое)
     const revealElements = document.querySelectorAll('.reveal');
     const revealOnScroll = () => {
       const windowHeight = window.innerHeight;
       revealElements.forEach(el => {
         const elementTop = el.getBoundingClientRect().top;
-        const elementVisible = 100; // за сколько пикселей до появления блока срабатывает анимация
-
-        // Если блок доскроллили — показываем
+        const elementVisible = 100;
         if (elementTop < windowHeight - elementVisible) {
           el.classList.add('reveal-active');
-        } 
-        // Если прокрутили обратно вверх — скрываем, чтобы потом снова показать
-        else {
+        } else {
           el.classList.remove('reveal-active');
         }
       });
