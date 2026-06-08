@@ -1,183 +1,204 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BYBOLDENKOI — Фотограф & Контент-креатор</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BYBOLDENKOI — Фотограф</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Caveat:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
 
-  <!-- ЭКРАН ЗАГРУЗКИ (PRELOADER) -->
   <div id="preloader">
-    <div class="preloader-content">
-      <span class="preloader-logo">BYBOLDENKOI</span>
-      <div class="preloader-line-wrap">
-        <div class="preloader-line"></div>
+    <div class="preloader-wrap">
+      <div class="preloader-logo">BYBOLDENKOI</div>
+      <div class="preloader-bar">
+        <div class="preloader-progress"></div>
       </div>
     </div>
   </div>
 
-  <!-- НАВИГАЦИЯ -->
   <nav class="nav">
-    <a href="#" class="nav-logo">BYBOLDENKOI</a>
-    <div class="nav-links">
-      <a href="#portfolio">Портфолио</a>
-      <a href="#pricing">Стоимость</a>
-      <a href="#contacts">Контакты</a>
-    </div>
+    <a href="#hero" class="nav-logo">BYBOLDENKOI</a>
+    <ul class="nav-links">
+      <li><a href="#portfolio">Портфолио</a></li>
+      <li><a href="#pricing">Прайс</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
   </nav>
 
-  <!-- ПЕРВЫЙ ЭКРАН (HERO) -->
-  <header class="hero">
+  <section id="hero" class="hero">
     <div class="hero-logo-block">
-      <span class="hero-script-accent">Aesthetics & Lifestyle</span>
+      <span class="hero-script-accent">photography by</span>
       <h1 class="hero-logo">BYBOLDENKOI</h1>
-      <p class="hero-tagline">Искусство сохранять ваши подлинные моменты</p>
+      <p class="hero-tagline">Бобруйск · Беларусь</p>
     </div>
-    
+
     <div class="hero-image-wrap">
-      <!-- Главная картинка загружается сразу (без lazy), чтобы не было скачков -->
-      <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=1200" class="hero-img" alt="Главное фото">
+      <img
+        src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1400&q=80"
+        alt="Главное фото"
+        class="hero-img"
+      />
       <div class="hero-frame"></div>
     </div>
-    
-    <p class="hero-sub">Профессиональная съемка в Babruysk и по всей Беларуси</p>
-    <a href="#portfolio" class="hero-arrow">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-        <path d="M12 5v14M5 12l7 7 7-7"/>
+
+    <p class="hero-sub">
+      Ловлю мгновения, которые остаются навсегда
+    </p>
+
+    <a href="#portfolio" class="hero-arrow" aria-label="Перейти к портфолио">
+      <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="12" y1="0" x2="12" y2="32" stroke="#111111" stroke-width="1"/>
+        <polyline points="4,24 12,34 20,24" stroke="#111111" stroke-width="1" fill="none"/>
       </svg>
     </a>
-  </header>
+  </section>
 
-  <!-- ГАЛЕРЕЯ / ПОРТФОЛИО (С анимацией плавного появления reveal) -->
   <section id="portfolio" class="portfolio reveal">
     <div class="section-header">
-      <span class="section-script">Portfolio</span>
-      <h2 class="section-title">Галерея работ</h2>
+      <span class="section-script">избранное</span>
+      <h2 class="section-title">Портфолио</h2>
     </div>
 
     <div class="gallery-masonry">
-      <!-- Ко всем картинкам ниже добавлено loading="lazy" для высокой скорости загрузки сайта -->
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600" loading="lazy" alt="Портрет">
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1520854221256-17451cc35953?q=80&w=600" loading="lazy" alt="Love Story">
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600" loading="lazy" alt="Свадебная съемка">
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600" loading="lazy" alt="Индивидуальная фотосессия">
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=600" loading="lazy" alt="Fashion">
-      </div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80" alt="Портрет" loading="lazy" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Свадьба" loading="lazy" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80" alt="Семейная съёмка" loading="lazy" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?w=600&q=80" alt="Парная съёмка" loading="lazy" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=600&q=80" alt="Портрет на природе" loading="lazy" /></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80" alt="Выпускной" loading="lazy" /></div>
     </div>
   </section>
 
-  <!-- ПРАЙС / СТОИМОСТЬ (С анимацией плавного появления reveal) -->
-  <section id="pricing" class="pricing reveal">
-    <div class="section-header">
-      <span class="section-script">Tariffs</span>
-      <h2 class="section-title">Стоимость услуг</h2>
-    </div>
-
-    <!-- Интерактивная сетка цен -->
-    <div class="pricing-grid">
+  <section id="pricing" class="pricing-dark reveal">
+    <div class="pricing-container">
       
-      <!-- Карточка 1 -->
-      <div class="pricing-card">
-        <div class="pricing-card-top">
-          <span class="pricing-script-label">Light</span>
-          <h3 class="pricing-card-title">Экспресс-съемка <em>Для быстрых задач</em></h3>
-        </div>
-        <ul class="pricing-list">
-          <li>
-            <span class="pricing-duration">1 ЧАС СЪЕМКИ</span>
-            <div class="pricing-dots"></div>
-            <span class="pricing-price">120 BYN</span>
-          </li>
-        </ul>
-        <p class="pricing-note-inline">Отлично подойдет для контента в соцсети или лаконичного портрета.</p>
+      <div class="pricing-header">
+        <span class="pricing-script-title">Цена</span>
+        <h2 class="pricing-main-title">ФОТОСЕССИИ</h2>
       </div>
 
-      <!-- Карточка 2 (Акцентная) -->
-      <div class="pricing-card pricing-card--accent">
-        <div class="pricing-card-top">
-          <span class="pricing-script-label">Standard</span>
-          <h3 class="pricing-card-title">Прогулочная / Студия <em>Популярный выбор</em></h3>
+      <div class="pricing-services-list">
+        
+        <div class="pricing-block">
+          <p class="pricing-category">индивидуальная, семейная, парная, с питомцами и т.д.</p>
+          <p class="pricing-row">
+            <span class="p-time">1 час</span>
+            <span class="p-line"></span>
+            <span class="p-price">70р</span>
+          </p>
+          <p class="pricing-row">
+            <span class="p-time">30 мин</span>
+            <span class="p-line"></span>
+            <span class="p-price">40р</span>
+          </p>
         </div>
-        <ul class="pricing-list">
-          <li>
-            <span class="pricing-duration">2 ЧАСА СЪЕМКИ</span>
-            <div class="pricing-dots"></div>
-            <span class="pricing-price">220 BYN</span>
-          </li>
-        </ul>
-        <p class="pricing-note-inline">Тщательно продуманная история, раскрывающая вашу индивидуальность.</p>
+
+        <div class="pricing-block">
+          <p class="pricing-category">свадебная, праздничная и т.п.</p>
+          <p class="pricing-row">
+            <span class="p-time">1 час</span>
+            <span class="p-line"></span>
+            <span class="p-price">100р</span>
+          </p>
+        </div>
+
+        <div class="pricing-block">
+          <p class="pricing-category">выпускной, школьная, более 5 человек</p>
+          <p class="pricing-row">
+            <span class="p-time">с человека</span>
+            <span class="p-line"></span>
+            <span class="p-price">40р</span>
+          </p>
+          <p class="pricing-note-inline">съемка от 1 часа до 3 часов</p>
+        </div>
+
       </div>
 
-      <!-- Карточка 3 -->
-      <div class="pricing-card">
-        <div class="pricing-card-top">
-          <span class="pricing-script-label">Premium</span>
-          <h3 class="pricing-card-title">Максимальный пакет <em>Все включено</em></h3>
-        </div>
-        <ul class="pricing-list">
-          <li>
-            <span class="pricing-duration">ДО 4 ЧАСОВ</span>
-            <div class="pricing-dots"></div>
-            <span class="pricing-price">400 BYN</span>
-          </li>
-        </ul>
-        <p class="pricing-note-inline">Полный съемочный день, детальный разбор концепции и образов.</p>
+      <div class="pricing-footnotes">
+        <p>*фотостудию и декор оплачивает заказчик</p>
+        <p>*каждые дополнительные 30 мин + 30р</p>
       </div>
 
-    </div>
+      <div class="pricing-includes">
+        <h3 class="includes-title">В СТОИМОСТЬ ВХОДИТ:</h3>
+        <ul class="includes-list">
+          <li>*количество фото до 100 шт (свадебные до 200 шт)</li>
+          <li>*ретушь всех фото</li>
+          <li>*цветокоррекция всех фотографий</li>
+        </ul>
+      </div>
 
-    <!-- Что включено во все пакеты -->
-    <div class="pricing-includes">
-      <h4 class="pricing-includes-title">Что включено в стоимость:</h4>
-      <ul class="pricing-includes-list">
-        <li>Консультация, помощь в подборе локаций и образов</li>
-        <li>Авторская цветокоррекция <strong>всех удачных кадров</strong></li>
-        <li>Глубокая ретушь лучших снимков</li>
-        <li>Закрытый доступ к фотографиям на облачном диске</li>
-      </ul>
+      <div class="pricing-readiness">
+        ГОТОВНОСТЬ фотографий - до 7 дней
+      </div>
+
+      <div class="pricing-footer-script">
+        открыта к сотрудничеству!<br>
+        <span>к любым заказам и предложениям</span>
+      </div>
+
     </div>
   </section>
 
-  <!-- ФУТЕР / КОНТАКТЫ -->
-  <footer id="contacts" class="footer">
+  <footer id="contacts" class="footer reveal">
     <div class="footer-inner">
       <div class="footer-logo-block">
-        <span class="footer-script">Say Hello</span>
-        <h2 class="footer-logo">BYBOLDENKOI</h2>
-        <p class="footer-tagline-small">Доступен для съемок по всей Беларуси</p>
+        <span class="footer-script">со мной можно</span>
+        <p class="footer-logo">BYBOLDENKOI</p>
+        <p class="footer-tagline-small">Бобруйск · Беларусь</p>
       </div>
-      
+
       <div class="footer-contacts">
-        <a href="https://instagram.com" target="_blank" class="contact-btn contact-btn--ig">
-          <span>Instagram</span>
+        <a href="https://instagram.com/byboldenkoi" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn--ig">
+          Instagram
         </a>
-        <a href="https://t.me" target="_blank" class="contact-btn contact-btn--tg">
-          <span>Telegram</span>
+        <a href="https://t.me/byboldenkoi" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn--tg">
+          Telegram
         </a>
       </div>
     </div>
-    <p class="footer-copy">&copy; 2026 BYBOLDENKOI. All rights reserved.</p>
+    <p class="footer-copy">© 2026 BYBOLDENKOI. Все права защищены.</p>
   </footer>
 
-  <!-- КНОПКА НАВЕРХ -->
-  <button class="scroll-top" aria-label="Наверх">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M12 19V5M5 12l7-7 7 7"/>
-    </svg>
-  </button>
+  <button class="scroll-top" id="scrollTop" aria-label="Наверх">↑</button>
 
-  <!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ -->
-  <script src="script.js"></script>
+  <script>
+    // 1. Прелоадер
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      setTimeout(() => {
+        preloader.classList.add('loaded');
+      }, 600); 
+    });
+
+    // 2. Плавное появление блоков при скролле (Reveal)
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      for (let i = 0; i < revealElements.length; i++) {
+        let windowHeight = window.innerHeight;
+        let elementTop = revealElements[i].getBoundingClientRect().top;
+        let elementVisible = 100;
+
+        if (elementTop < windowHeight - elementVisible) {
+          revealElements[i].classList.add('reveal-active');
+        }
+      }
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    // 3. Кнопка наверх
+    const btn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) { btn.classList.add('visible'); } 
+      else { btn.classList.remove('visible'); }
+    });
+    btn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  </script>
+
 </body>
 </html>
