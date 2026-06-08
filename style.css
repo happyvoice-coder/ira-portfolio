@@ -1,0 +1,691 @@
+/* ============================================================
+   BYBOLDENKOI — Стили сайта-визитки
+   Структура файла:
+   1. CSS-переменные и сброс
+   2. Базовые стили
+   3. Навигация
+   4. Hero (приветственный экран)
+   5. Общие стили секций
+   6. Portfolio (галерея)
+   7. Pricing (прайс)
+   8. Footer (контакты)
+   9. Адаптивность (mobile)
+   10. Анимации появления
+============================================================ */
+
+/* =====================
+   1. ПЕРЕМЕННЫЕ И СБРОС
+======================== */
+:root {
+  --white:      #ffffff;
+  --black:      #111111;
+  --gray-light: #f5f5f3;
+  --gray-mid:   #e0dedd;
+  --gray-text:  #888888;
+  --pink:       #E8C5C8;
+  --pink-dark:  #c9a0a4;
+
+  --font-serif:  'Cormorant Garamond', Georgia, serif;
+  --font-script: 'Caveat', cursive;
+  --font-sans:   'Montserrat', sans-serif;
+
+  --max-w: 1280px;
+  --side-pad: clamp(20px, 5vw, 80px);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--white);
+  color: var(--black);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* =====================
+   2. НАВИГАЦИЯ
+======================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px var(--side-pad);
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--gray-mid);
+}
+
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: clamp(13px, 1.6vw, 16px);
+  letter-spacing: 0.3em;
+  font-weight: 600;
+  color: var(--black);
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+}
+
+.nav-logo:hover {
+  opacity: 0.6;
+}
+
+.nav-links {
+  display: flex;
+  gap: clamp(24px, 3vw, 48px);
+}
+
+.nav-links a {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+}
+
+/* =====================
+   3. HERO
+======================== */
+.hero {
+  padding-top: 80px; /* высота навигации */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-logo-block {
+  text-align: center;
+  padding: 80px var(--side-pad) 40px;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 1.2s ease both;
+}
+
+.hero-script-accent {
+  display: block;
+  font-family: var(--font-script);
+  font-size: clamp(20px, 3vw, 28px);
+  color: var(--pink-dark);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.hero-logo {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 6vw, 72px);
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--black);
+  line-height: 1;
+}
+
+.hero-tagline {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gray-text);
+  margin-top: 14px;
+}
+
+/* Главное фото Hero */
+.hero-image-wrap {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 var(--side-pad);
+  position: relative;
+  animation: fadeUp 1.4s ease 0.2s both;
+}
+
+.hero-img {
+  width: 100%;
+  height: clamp(300px, 55vh, 620px);
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+/* Декоративная рамка внутри фото */
+.hero-frame {
+  position: absolute;
+  inset: 12px calc(var(--side-pad) + 12px);
+  border: 1px solid rgba(255,255,255,0.45);
+  pointer-events: none;
+}
+
+.hero-sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(15px, 2vw, 20px);
+  color: var(--gray-text);
+  text-align: center;
+  padding: 32px var(--side-pad) 16px;
+  letter-spacing: 0.04em;
+  animation: fadeUp 1.4s ease 0.35s both;
+}
+
+.hero-arrow {
+  display: block;
+  padding: 24px;
+  opacity: 0.45;
+  transition: opacity 0.3s, transform 0.3s;
+  animation: fadeUp 1.4s ease 0.5s both, bounce 2.5s ease 2s infinite;
+}
+
+.hero-arrow:hover {
+  opacity: 1;
+}
+
+/* =====================
+   4. ОБЩИЕ СТИЛИ СЕКЦИЙ
+======================== */
+section {
+  padding: clamp(60px, 8vw, 130px) var(--side-pad);
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(40px, 6vw, 80px);
+}
+
+.section-script {
+  display: block;
+  font-family: var(--font-script);
+  font-size: clamp(22px, 3vw, 32px);
+  color: var(--pink-dark);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+/* =====================
+   5. PORTFOLIO / GALLERY
+======================== */
+.portfolio {
+  background: var(--white);
+}
+
+/* Masonry через CSS columns */
+.gallery-masonry {
+  column-count: 3;
+  column-gap: 16px;
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.4s ease;
+  opacity: 0.95;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.03);
+  opacity: 1;
+}
+
+/* Разная высота для органичности masonry */
+.gallery-item:nth-child(3n+1) img { height: 340px; }
+.gallery-item:nth-child(3n+2) img { height: 260px; }
+.gallery-item:nth-child(3n)   img { height: 420px; }
+
+/* =====================
+   6. PRICING
+======================== */
+.pricing {
+  background: var(--gray-light);
+  max-width: 100%;
+  padding: clamp(60px, 8vw, 130px) var(--side-pad);
+}
+
+.pricing .section-header {
+  max-width: var(--max-w);
+  margin: 0 auto clamp(40px, 6vw, 80px);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2px;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  border: 1px solid var(--gray-mid);
+}
+
+.pricing-card {
+  background: var(--white);
+  padding: clamp(32px, 4vw, 52px) clamp(24px, 3vw, 44px);
+  border-right: 1px solid var(--gray-mid);
+  transition: background 0.3s;
+}
+
+.pricing-card:last-child {
+  border-right: none;
+}
+
+.pricing-card--accent {
+  background: var(--black);
+  color: var(--white);
+}
+
+.pricing-card--accent .pricing-script-label {
+  color: var(--pink);
+}
+
+.pricing-card--accent .pricing-price {
+  color: var(--pink);
+}
+
+.pricing-card--accent .pricing-duration {
+  color: rgba(255,255,255,0.55);
+}
+
+.pricing-card--accent .pricing-note-inline {
+  color: rgba(255,255,255,0.45);
+}
+
+.pricing-card-top {
+  margin-bottom: 28px;
+}
+
+.pricing-script-label {
+  display: block;
+  font-family: var(--font-script);
+  font-size: clamp(18px, 2.5vw, 24px);
+  color: var(--pink-dark);
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+
+.pricing-card-title {
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+}
+
+.pricing-card-title em {
+  display: block;
+  font-size: 0.65em;
+  font-weight: 300;
+  opacity: 0.6;
+  letter-spacing: 0.01em;
+  margin-top: 6px;
+}
+
+.pricing-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pricing-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.pricing-duration {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  white-space: nowrap;
+}
+
+.pricing-dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--gray-mid);
+  position: relative;
+  top: -4px;
+}
+
+.pricing-price {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.pricing-note-inline {
+  margin-top: 16px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  opacity: 0.5;
+}
+
+/* Что входит */
+.pricing-includes {
+  max-width: var(--max-w);
+  margin: 48px auto 0;
+  padding: 40px clamp(24px, 4vw, 52px);
+  border: 1px solid var(--gray-mid);
+  background: var(--white);
+}
+
+.pricing-includes-title {
+  font-family: var(--font-serif);
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  color: var(--black);
+}
+
+.pricing-includes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px 32px;
+}
+
+.pricing-includes-list li {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--black);
+  opacity: 0.75;
+  padding-left: 14px;
+  position: relative;
+}
+
+.pricing-includes-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 5px;
+  height: 1px;
+  background: var(--pink-dark);
+}
+
+.pricing-includes-list li strong {
+  font-weight: 500;
+  color: var(--black);
+  opacity: 1;
+}
+
+/* Примечания */
+.pricing-notes {
+  max-width: var(--max-w);
+  margin: 20px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+}
+
+.pricing-notes p {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--gray-text);
+  line-height: 1.6;
+}
+
+/* =====================
+   7. FOOTER / КОНТАКТЫ
+======================== */
+.footer {
+  background: var(--black);
+  color: var(--white);
+  padding: clamp(60px, 8vw, 100px) var(--side-pad) 40px;
+}
+
+.footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-logo-block {
+  flex-shrink: 0;
+}
+
+.footer-script {
+  display: block;
+  font-family: var(--font-script);
+  font-size: clamp(22px, 3vw, 30px);
+  color: var(--pink);
+  margin-bottom: 8px;
+}
+
+.footer-logo {
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 3.5vw, 42px);
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.footer-tagline-small {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-top: 10px;
+}
+
+/* Кнопки контактов */
+.footer-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-end;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  border: 1px solid rgba(255,255,255,0.2);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+  min-width: 200px;
+  justify-content: center;
+}
+
+.contact-btn-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.contact-btn--ig:hover {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: var(--black);
+}
+
+.contact-btn--tg:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.5);
+}
+
+/* Копирайт */
+.footer-copy {
+  max-width: var(--max-w);
+  margin: 32px auto 0;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.22);
+  text-align: center;
+}
+
+/* =====================
+   8. АДАПТИВНОСТЬ
+======================== */
+@media (max-width: 900px) {
+  .gallery-masonry {
+    column-count: 2;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-contacts {
+    align-items: flex-start;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .contact-btn {
+    flex: 1 1 180px;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-links {
+    display: none; /* на очень маленьких экранах скрываем, лого остается */
+  }
+
+  .gallery-masonry {
+    column-count: 1;
+    column-gap: 0;
+  }
+
+  /* На мобиле убираем разную высоту — одна лента */
+  .gallery-item:nth-child(n) img {
+    height: auto;
+    max-height: 500px;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-card {
+    border-right: none;
+    border-bottom: 1px solid var(--gray-mid);
+  }
+
+  .hero-frame {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer-contacts {
+    flex-direction: column;
+  }
+
+  .contact-btn {
+    width: 100%;
+  }
+}
+
+/* =====================
+   9. АНИМАЦИИ
+======================== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(8px); }
+}
+
+/* Плавное появление элементов галереи при скролле */
+.gallery-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.7s ease forwards;
+}
+
+/* Задержка для органичного появления */
+.gallery-item:nth-child(1)  { animation-delay: 0.05s; }
+.gallery-item:nth-child(2)  { animation-delay: 0.12s; }
+.gallery-item:nth-child(3)  { animation-delay: 0.19s; }
+.gallery-item:nth-child(4)  { animation-delay: 0.26s; }
+.gallery-item:nth-child(5)  { animation-delay: 0.33s; }
+.gallery-item:nth-child(6)  { animation-delay: 0.40s; }
+.gallery-item:nth-child(7)  { animation-delay: 0.47s; }
+.gallery-item:nth-child(8)  { animation-delay: 0.54s; }
+.gallery-item:nth-child(9)  { animation-delay: 0.60s; }
+.gallery-item:nth-child(10) { animation-delay: 0.66s; }
+.gallery-item:nth-child(11) { animation-delay: 0.72s; }
+.gallery-item:nth-child(12) { animation-delay: 0.78s; }

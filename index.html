@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BYBOLDENKOI — Фотограф</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Caveat:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================
+       НАВИГАЦИЯ
+  =============================== -->
+  <nav class="nav">
+    <a href="#hero" class="nav-logo">BYBOLDENKOI</a>
+    <ul class="nav-links">
+      <li><a href="#portfolio">Портфолио</a></li>
+      <li><a href="#pricing">Прайс</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================
+       HERO — ПРИВЕТСТВЕННЫЙ ЭКРАН
+  =============================== -->
+  <section id="hero" class="hero">
+
+    <!-- Логотип -->
+    <div class="hero-logo-block">
+      <span class="hero-script-accent">photography by</span>
+      <h1 class="hero-logo">BYBOLDENKOI</h1>
+      <p class="hero-tagline">Минск · Беларусь</p>
+    </div>
+
+    <!-- ================================================
+         ГЛАВНОЕ ФОТО HERO
+         ИРА, ЗАМЕНИ ССЫЛКУ src="..." НА СВОЁ ФОТО!
+         Пример: src="photos/hero-main.jpg"
+         Рекомендуемый размер: минимум 1400×900 px
+    ================================================= -->
+    <div class="hero-image-wrap">
+      <img
+        src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1400&q=80"
+        alt="Главное фото"
+        class="hero-img"
+      />
+      <!-- Тонкая декоративная рамка поверх фото -->
+      <div class="hero-frame"></div>
+    </div>
+
+    <!-- Маленький сопроводительный текст -->
+    <p class="hero-sub">
+      Ловлю мгновения, которые остаются навсегда
+    </p>
+
+    <!-- Стрелка вниз -->
+    <a href="#portfolio" class="hero-arrow" aria-label="Перейти к портфолио">
+      <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="12" y1="0" x2="12" y2="32" stroke="#111111" stroke-width="1"/>
+        <polyline points="4,24 12,34 20,24" stroke="#111111" stroke-width="1" fill="none"/>
+      </svg>
+    </a>
+
+  </section>
+
+  <!-- ============================
+       PORTFOLIO — ГАЛЕРЕЯ MASONRY
+  =============================== -->
+  <section id="portfolio" class="portfolio">
+
+    <div class="section-header">
+      <span class="section-script">избранное</span>
+      <h2 class="section-title">Портфолио</h2>
+    </div>
+
+    <!-- ================================================
+         ГАЛЕРЕЯ ФОТОГРАФИЙ
+         ИРА, ВОТ КАК МЕНЯТЬ ФОТОГРАФИИ:
+         1. Загрузи свои фото в папку photos/ на хостинге
+         2. Замени каждую ссылку src="..." на путь к своему файлу
+            Например: src="photos/portrait-01.jpg"
+         3. Можешь добавлять новые <div class="gallery-item">...</div>
+            или удалять лишние — их количество не ограничено.
+         4. Атрибут alt="" — краткое описание фото (для SEO и доступности)
+    ================================================= -->
+    <div class="gallery-masonry">
+
+      <!-- ИРА, ЗАМЕНИ src НА СВОЁ ФОТО (фото 1) -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80" alt="Портрет" loading="lazy" />
+      </div>
+
+      <!-- ИРА, ЗАМЕНИ src НА СВОЁ ФОТО (фото 2) -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Свадьба" loading="lazy" />
+      </div>
+
+      <!-- ИРА, ЗАМЕНИ src НА СВОЁ ФОТО (фото 3) -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80" alt="Семейная съёмка" loading="lazy" />
+      </div>
+
+      <!-- ИРА, ЗАМЕНИ src НА СВОЁ ФОТО (фото 4) -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?w=600&q=80" alt="Парная съёмка" loading="lazy" />
+      </div>
+
+      <!-- ИРА, ЗАМЕНИ src НА СВОЁ ФОТО (фото 5) -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=600&q=80" alt="Портрет на природе" loading="lazy" />
+      </div>
+
+      <!-- ИРА, ЗАМЕНИ src НА СВОЁ ФОТО (фото 6) -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80" alt="Выпускной" loading="lazy" />
+      </div>
+
+      <!-- ИРА, ЗАМЕНИ src НА СВОЁ ФОТО (фото 7) -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80" alt="Свадьба крупный план" loading="lazy" />
+      </div>
+
+      <!-- ИРА, ЗАМЕНИ src НА СВОЁ ФОТО (фото 8) -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=600&q=80" alt="Праздник" loading="lazy" />
+      </div>
+
+      <!-- ИРА, ЗАМЕНИ src НА СВОЁ ФОТО (фото 9) -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=600&q=80" alt="Семья с питомцем" loading="lazy" />
+      </div>
+
+      <!-- ИРА, ЗАМЕНИ src НА СВОЁ ФОТО (фото 10) -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80" alt="Декор съёмки" loading="lazy" />
+      </div>
+
+      <!-- ИРА, ЗАМЕНИ src НА СВОЁ ФОТО (фото 11) -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80" alt="Крупный портрет" loading="lazy" />
+      </div>
+
+      <!-- ИРА, ЗАМЕНИ src НА СВОЁ ФОТО (фото 12) -->
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt="Свадьба" loading="lazy" />
+      </div>
+
+    </div>
+    <!-- /gallery-masonry -->
+
+  </section>
+
+  <!-- ============================
+       PRICING — ПРАЙС
+  =============================== -->
+  <section id="pricing" class="pricing">
+
+    <div class="section-header">
+      <span class="section-script">стоимость</span>
+      <h2 class="section-title">Услуги и прайс</h2>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- Карточка 1 -->
+      <div class="pricing-card">
+        <div class="pricing-card-top">
+          <span class="pricing-script-label">индивидуальная</span>
+          <h3 class="pricing-card-title">Индивидуальная,<br>семейная, парная,<br>с питомцами</h3>
+        </div>
+        <ul class="pricing-list">
+          <li>
+            <span class="pricing-duration">1 час</span>
+            <span class="pricing-dots"></span>
+            <span class="pricing-price">70 руб.</span>
+          </li>
+          <li>
+            <span class="pricing-duration">30 минут</span>
+            <span class="pricing-dots"></span>
+            <span class="pricing-price">40 руб.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Карточка 2 -->
+      <div class="pricing-card pricing-card--accent">
+        <div class="pricing-card-top">
+          <span class="pricing-script-label">торжество</span>
+          <h3 class="pricing-card-title">Свадебная,<br>праздничная<br><em>(до 15 человек)</em></h3>
+        </div>
+        <ul class="pricing-list">
+          <li>
+            <span class="pricing-duration">1 час</span>
+            <span class="pricing-dots"></span>
+            <span class="pricing-price">100 руб.</span>
+          </li>
+        </ul>
+        <p class="pricing-note-inline">При 15+ участниках — цена обсуждается индивидуально</p>
+      </div>
+
+      <!-- Карточка 3 -->
+      <div class="pricing-card">
+        <div class="pricing-card-top">
+          <span class="pricing-script-label">группа</span>
+          <h3 class="pricing-card-title">Выпускной, школьная,<br>групповые портреты<br><em>(более 5 человек)</em></h3>
+        </div>
+        <ul class="pricing-list">
+          <li>
+            <span class="pricing-duration">с человека</span>
+            <span class="pricing-dots"></span>
+            <span class="pricing-price">40 руб.</span>
+          </li>
+        </ul>
+        <p class="pricing-note-inline">Съёмка до 3 часов</p>
+      </div>
+
+    </div>
+    <!-- /pricing-grid -->
+
+    <!-- Что входит в стоимость -->
+    <div class="pricing-includes">
+      <h4 class="pricing-includes-title">В стоимость входит</h4>
+      <ul class="pricing-includes-list">
+        <li>До 100 фотографий (свадебные — до 200 шт.)</li>
+        <li>Ретушь и цветокоррекция всех фотографий</li>
+        <li>Готовность — до 7 дней</li>
+        <li>Каждые дополнительные 30 мин — <strong>+30 руб.</strong></li>
+      </ul>
+    </div>
+
+    <!-- Важные примечания -->
+    <div class="pricing-notes">
+      <p>* Исходники (RAW-файлы) не передаются.</p>
+      <p>* Аренда фотостудии и декор оплачиваются заказчиком отдельно.</p>
+    </div>
+
+  </section>
+
+  <!-- ============================
+       CONTACTS — КОНТАКТЫ / ФУТЕР
+  =============================== -->
+  <footer id="contacts" class="footer">
+
+    <div class="footer-inner">
+
+      <div class="footer-logo-block">
+        <span class="footer-script">со мной можно</span>
+        <p class="footer-logo">BYBOLDENKOI</p>
+        <p class="footer-tagline-small">Минск · Беларусь</p>
+      </div>
+
+      <div class="footer-contacts">
+
+        <!-- ================================================
+             КОНТАКТНЫЕ КНОПКИ
+             ИРА, ЗАМЕНИ ССЫЛКИ НА СВОИ:
+             1. Instagram: замени "byboldenkoi" на свой ник
+             2. Telegram: замени "byboldenkoi" на свой ник
+        ================================================= -->
+
+        <a
+          href="https://instagram.com/byboldenkoi"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-btn contact-btn--ig"
+        >
+          <svg class="contact-btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+          </svg>
+          Instagram
+        </a>
+
+        <a
+          href="https://t.me/byboldenkoi"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-btn contact-btn--tg"
+        >
+          <svg class="contact-btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 2L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          Telegram
+        </a>
+
+      </div>
+
+    </div>
+
+    <p class="footer-copy">© 2025 BYBOLDENKOI. Все права защищены.</p>
+
+  </footer>
+
+</body>
+</html>
