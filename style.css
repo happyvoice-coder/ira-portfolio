@@ -1,17 +1,8 @@
 /* ============================================================
-   BYBOLDENKOI — Стили сайта-визитки
-   Структура файла:
-   1. CSS-переменные и сброс
-   2. Базовые стили
-   3. Навигация
-   4. Hero (приветственный экран)
-   5. Общие стили секций
-   6. Portfolio (галерея)
-   7. Pricing (прайс)
-   8. Footer (контакты)
-   9. Адаптивность (mobile)
-   10. Анимации появления
+   BYBOLDENKOI — Стили сайта-визитки v4
 ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Caveat:wght@400;500&family=Montserrat:wght@300;400;500&display=swap');
 
 /* =====================
    1. ПЕРЕМЕННЫЕ И СБРОС
@@ -21,7 +12,7 @@
   --black:      #111111;
   --gray-light: #f5f5f3;
   --gray-mid:   #e0dedd;
-  --gray-text:  #888888;
+  --readable:   #333333;   /* единый цвет для всех читаемых текстов */
   --pink:       #E8C5C8;
   --pink-dark:  #c9a0a4;
 
@@ -39,10 +30,7 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
+html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
   background-color: var(--white);
@@ -53,36 +41,22 @@ body {
   overflow-x: hidden;
 }
 
-img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}
+img { display: block; width: 100%; height: auto; object-fit: cover; }
+a   { text-decoration: none; color: inherit; }
+ul  { list-style: none; }
 
 /* =====================
    2. НАВИГАЦИЯ
 ======================== */
 .nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 22px var(--side-pad);
-  background: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.96);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--gray-mid);
 }
@@ -96,41 +70,31 @@ ul {
   text-transform: uppercase;
   transition: opacity 0.3s;
 }
+.nav-logo:hover { opacity: 0.6; }
 
-.nav-logo:hover {
-  opacity: 0.6;
-}
-
-.nav-links {
-  display: flex;
-  gap: clamp(24px, 3vw, 48px);
-}
+.nav-links { display: flex; gap: clamp(24px, 3vw, 48px); }
 
 .nav-links a {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--black);
-  opacity: 1;
+  color: var(--black);        /* чёрный, без opacity */
+  font-weight: 400;
   transition: opacity 0.3s;
 }
-
-.nav-links a:hover {
-  opacity: 1;
-}
+.nav-links a:hover { opacity: 0.5; }
 
 /* =====================
    3. HERO
 ======================== */
 .hero {
-  padding-top: 80px; /* высота навигации */
+  padding-top: 80px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0;
   position: relative;
   overflow: hidden;
 }
@@ -149,7 +113,6 @@ ul {
   font-size: clamp(20px, 3vw, 28px);
   color: var(--pink-dark);
   margin-bottom: 6px;
-  letter-spacing: 0.02em;
 }
 
 .hero-logo {
@@ -162,16 +125,17 @@ ul {
   line-height: 1;
 }
 
+/* «Бобруйск · Беларусь» */
 .hero-tagline {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #555555;
+  color: var(--readable);     /* #333 — чётко читается */
+  font-weight: 400;
   margin-top: 14px;
 }
 
-/* Главное фото Hero */
 .hero-image-wrap {
   width: 100%;
   max-width: 960px;
@@ -189,7 +153,6 @@ ul {
   display: block;
 }
 
-/* Декоративная рамка внутри фото */
 .hero-frame {
   position: absolute;
   inset: 12px calc(var(--side-pad) + 12px);
@@ -197,28 +160,27 @@ ul {
   pointer-events: none;
 }
 
+/* «Ловлю мгновения которые остаются навсегда» */
 .hero-sub {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(15px, 2vw, 20px);
-  color: #555555;
+  font-size: clamp(16px, 2vw, 21px);
+  color: var(--readable);
+  font-weight: 400;
   text-align: center;
-  padding: 32px var(--side-pad) 16px;
+  padding: 28px var(--side-pad) 0;
   letter-spacing: 0.04em;
   animation: fadeUp 1.4s ease 0.35s both;
 }
 
 .hero-arrow {
   display: block;
-  padding: 24px;
-  opacity: 0.45;
+  padding: 16px 24px 24px;
+  opacity: 0.5;
   transition: opacity 0.3s, transform 0.3s;
   animation: fadeUp 1.4s ease 0.5s both, bounce 2.5s ease 2s infinite;
 }
-
-.hero-arrow:hover {
-  opacity: 1;
-}
+.hero-arrow:hover { opacity: 1; }
 
 /* =====================
    4. ОБЩИЕ СТИЛИ СЕКЦИЙ
@@ -240,7 +202,6 @@ section {
   font-size: clamp(22px, 3vw, 32px);
   color: var(--pink-dark);
   margin-bottom: 6px;
-  letter-spacing: 0.02em;
 }
 
 .section-title {
@@ -255,11 +216,8 @@ section {
 /* =====================
    5. PORTFOLIO / GALLERY
 ======================== */
-.portfolio {
-  background: var(--white);
-}
+.portfolio { background: var(--white); }
 
-/* Masonry через CSS columns */
 .gallery-masonry {
   column-count: 3;
   column-gap: 16px;
@@ -270,25 +228,34 @@ section {
   margin-bottom: 16px;
   overflow: hidden;
   position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.7s ease forwards;
 }
 
 .gallery-item img {
   width: 100%;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              opacity 0.4s ease;
-  opacity: 0.95;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+.gallery-item:hover img { transform: scale(1.03); }
 
-.gallery-item:hover img {
-  transform: scale(1.03);
-  opacity: 1;
-}
-
-/* Разная высота для органичности masonry */
 .gallery-item:nth-child(3n+1) img { height: 340px; }
 .gallery-item:nth-child(3n+2) img { height: 260px; }
 .gallery-item:nth-child(3n)   img { height: 420px; }
+
+.gallery-item:nth-child(1)  { animation-delay: 0.05s; }
+.gallery-item:nth-child(2)  { animation-delay: 0.12s; }
+.gallery-item:nth-child(3)  { animation-delay: 0.19s; }
+.gallery-item:nth-child(4)  { animation-delay: 0.26s; }
+.gallery-item:nth-child(5)  { animation-delay: 0.33s; }
+.gallery-item:nth-child(6)  { animation-delay: 0.40s; }
+.gallery-item:nth-child(7)  { animation-delay: 0.47s; }
+.gallery-item:nth-child(8)  { animation-delay: 0.54s; }
+.gallery-item:nth-child(9)  { animation-delay: 0.60s; }
+.gallery-item:nth-child(10) { animation-delay: 0.66s; }
+.gallery-item:nth-child(11) { animation-delay: 0.72s; }
+.gallery-item:nth-child(12) { animation-delay: 0.78s; }
 
 /* =====================
    6. PRICING
@@ -317,37 +284,22 @@ section {
   background: var(--white);
   padding: clamp(32px, 4vw, 52px) clamp(24px, 3vw, 44px);
   border-right: 1px solid var(--gray-mid);
-  transition: background 0.3s;
 }
+.pricing-card:last-child { border-right: none; }
 
-.pricing-card:last-child {
-  border-right: none;
-}
-
+/* Тёмная карточка (свадебная) */
 .pricing-card--accent {
   background: var(--black);
   color: var(--white);
 }
+.pricing-card--accent .pricing-script-label { color: var(--pink); }
+.pricing-card--accent .pricing-price        { color: var(--pink); }
+.pricing-card--accent .pricing-duration     { color: #cccccc; }  /* светло-серый НА ТЁМНОМ — читаемо */
+.pricing-card--accent .pricing-note-inline  { color: #cccccc; }
+.pricing-card--accent .pricing-card-title   { color: var(--white); }
+.pricing-card--accent .pricing-card-title em { color: #cccccc; }
 
-.pricing-card--accent .pricing-script-label {
-  color: var(--pink);
-}
-
-.pricing-card--accent .pricing-price {
-  color: var(--pink);
-}
-
-.pricing-card--accent .pricing-duration {
-  color: rgba(255,255,255,0.85);
-}
-
-.pricing-card--accent .pricing-note-inline {
-  color: rgba(255,255,255,0.75);
-}
-
-.pricing-card-top {
-  margin-bottom: 28px;
-}
+.pricing-card-top { margin-bottom: 28px; }
 
 .pricing-script-label {
   display: block;
@@ -355,7 +307,6 @@ section {
   font-size: clamp(18px, 2.5vw, 24px);
   color: var(--pink-dark);
   margin-bottom: 10px;
-  letter-spacing: 0.02em;
 }
 
 .pricing-card-title {
@@ -364,36 +315,30 @@ section {
   font-weight: 400;
   line-height: 1.35;
   letter-spacing: 0.03em;
+  color: var(--black);
 }
 
+/* «(более 5 человек)» */
 .pricing-card-title em {
   display: block;
-  font-size: 0.65em;
-  font-weight: 300;
-  opacity: 0.85;
-  letter-spacing: 0.01em;
+  font-size: 0.7em;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--readable);   /* #333 — читаемо */
   margin-top: 6px;
 }
 
-.pricing-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+.pricing-list { display: flex; flex-direction: column; gap: 16px; }
+.pricing-list li { display: flex; align-items: baseline; gap: 8px; }
 
-.pricing-list li {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
+/* «1 ЧАС», «30 МИНУТ», «С ЧЕЛОВЕКА» */
 .pricing-duration {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 1;
-  color: #555555;
+  color: var(--readable);   /* #333 — читаемо */
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -410,17 +355,20 @@ section {
   font-weight: 300;
   letter-spacing: 0.05em;
   white-space: nowrap;
+  color: var(--black);
 }
 
+/* «Съёмка до 3 часов», «цена обсуждается» */
 .pricing-note-inline {
   margin-top: 16px;
-  font-size: 11px;
-  letter-spacing: 0.04em;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
   line-height: 1.5;
-  color: #555555;
+  color: var(--readable);   /* #333 */
 }
 
-/* Что входит */
+/* Блок «В стоимость входит» */
 .pricing-includes {
   max-width: var(--max-w);
   margin: 48px auto 0;
@@ -445,32 +393,28 @@ section {
   gap: 14px 32px;
 }
 
+/* «До 100 фотографий», «Ретушь», «Готовность», «+30 мин» */
 .pricing-includes-list li {
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 400;
   line-height: 1.55;
-  color: var(--black);
-  opacity: 1;
+  color: var(--black);      /* полный чёрный */
   padding-left: 14px;
   position: relative;
 }
-
 .pricing-includes-list li::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 8px;
-  width: 5px;
-  height: 1px;
+  left: 0; top: 9px;
+  width: 5px; height: 1px;
   background: var(--pink-dark);
 }
-
 .pricing-includes-list li strong {
-  font-weight: 500;
+  font-weight: 600;
   color: var(--black);
-  opacity: 1;
 }
 
-/* Примечания */
+/* Примечания со звёздочкой */
 .pricing-notes {
   max-width: var(--max-w);
   margin: 20px auto 0;
@@ -479,10 +423,12 @@ section {
   gap: 8px 32px;
 }
 
+/* «*Исходники не передаются», «*Аренда фотостудии...» */
 .pricing-notes p {
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  color: #555555;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: var(--readable);   /* #333 */
   line-height: 1.6;
 }
 
@@ -503,12 +449,10 @@ section {
   justify-content: space-between;
   gap: 48px;
   padding-bottom: 60px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 
-.footer-logo-block {
-  flex-shrink: 0;
-}
+.footer-logo-block { flex-shrink: 0; }
 
 .footer-script {
   display: block;
@@ -524,17 +468,17 @@ section {
   font-weight: 300;
   letter-spacing: 0.28em;
   text-transform: uppercase;
+  color: var(--white);
 }
 
 .footer-tagline-small {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.65);
+  color: #aaaaaa;            /* серый НА ТЁМНОМ — читаемо */
   margin-top: 10px;
 }
 
-/* Кнопки контактов */
 .footer-contacts {
   display: flex;
   flex-direction: column;
@@ -550,6 +494,7 @@ section {
   border: 1px solid rgba(255,255,255,0.6);
   font-family: var(--font-sans);
   font-size: 12px;
+  font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--white);
@@ -557,31 +502,24 @@ section {
   min-width: 200px;
   justify-content: center;
 }
-
-.contact-btn-icon {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
+.contact-btn-icon { width: 18px; height: 18px; flex-shrink: 0; }
 
 .contact-btn--ig:hover {
   background: var(--pink);
   border-color: var(--pink);
   color: var(--black);
 }
-
 .contact-btn--tg:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.8);
 }
 
-/* Копирайт */
 .footer-copy {
   max-width: var(--max-w);
   margin: 32px auto 0;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.5);
+  color: #777777;            /* читаемый серый на тёмном */
   text-align: center;
 }
 
@@ -589,14 +527,9 @@ section {
    8. АДАПТИВНОСТЬ
 ======================== */
 @media (max-width: 900px) {
-  .gallery-masonry {
-    column-count: 2;
-  }
+  .gallery-masonry { column-count: 2; }
 
-  .footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
 
   .footer-contacts {
     align-items: flex-start;
@@ -604,50 +537,76 @@ section {
     flex-direction: row;
     flex-wrap: wrap;
   }
-
-  .contact-btn {
-    flex: 1 1 180px;
-    min-width: 0;
-  }
+  .contact-btn { flex: 1 1 180px; min-width: 0; }
 }
 
 @media (max-width: 600px) {
-  .nav-links {
-    display: none; /* на очень маленьких экранах скрываем, лого остается */
-  }
+  .nav-links { display: none; }
 
+  /* Галерея на мобиле — одна колонка, auto высота */
   .gallery-masonry {
     column-count: 1;
     column-gap: 0;
   }
-
-  /* На мобиле убираем разную высоту — одна лента */
+  .gallery-item { margin-bottom: 10px; }
   .gallery-item:nth-child(n) img {
-    height: auto;
-    max-height: 500px;
+    height: auto !important;
+    max-height: 480px;
+    object-fit: cover;
   }
 
-  .pricing-grid {
-    grid-template-columns: 1fr;
-  }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card { border-right: none; border-bottom: 1px solid var(--gray-mid); }
 
-  .pricing-card {
-    border-right: none;
-    border-bottom: 1px solid var(--gray-mid);
-  }
-
-  .hero-frame {
-    display: none;
-  }
+  .hero-frame { display: none; }
 }
 
 @media (max-width: 400px) {
-  .footer-contacts {
-    flex-direction: column;
-  }
+  .footer-contacts { flex-direction: column; }
+  .contact-btn { width: 100%; }
+}
 
-  .contact-btn {
-    width: 100%;
+/* =====================
+   КНОПКА «НАВЕРХ»
+======================== */
+.scroll-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 200;
+  width: 44px;
+  height: 44px;
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--gray-mid);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.35s ease, transform 0.35s ease, background 0.25s, border-color 0.25s;
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-top:hover {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+@media (max-width: 600px) {
+  .scroll-top {
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -655,38 +614,11 @@ section {
    9. АНИМАЦИИ
 ======================== */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(8px); }
 }
-
-/* Плавное появление элементов галереи при скролле */
-.gallery-item {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.7s ease forwards;
-}
-
-/* Задержка для органичного появления */
-.gallery-item:nth-child(1)  { animation-delay: 0.05s; }
-.gallery-item:nth-child(2)  { animation-delay: 0.12s; }
-.gallery-item:nth-child(3)  { animation-delay: 0.19s; }
-.gallery-item:nth-child(4)  { animation-delay: 0.26s; }
-.gallery-item:nth-child(5)  { animation-delay: 0.33s; }
-.gallery-item:nth-child(6)  { animation-delay: 0.40s; }
-.gallery-item:nth-child(7)  { animation-delay: 0.47s; }
-.gallery-item:nth-child(8)  { animation-delay: 0.54s; }
-.gallery-item:nth-child(9)  { animation-delay: 0.60s; }
-.gallery-item:nth-child(10) { animation-delay: 0.66s; }
-.gallery-item:nth-child(11) { animation-delay: 0.72s; }
-.gallery-item:nth-child(12) { animation-delay: 0.78s; }
