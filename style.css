@@ -9,13 +9,10 @@
   width: 100%; height: 100%;
   background-color: #ffffff;
   z-index: 9999;
-  
-  /* Делаем родителя контейнером, который всё центрирует */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
   transition: opacity 0.5s ease;
 }
 
@@ -30,7 +27,6 @@
   letter-spacing: 0.3em;
   text-transform: uppercase;
   margin-bottom: 12px;
-  /* Добавили, чтобы текст тоже не съезжал */
   text-align: center; 
 }
 
@@ -53,9 +49,6 @@
   50% { left: 0; }
   100% { left: 100%; }
 }
-
-
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Caveat:wght@400;500&family=Montserrat:wght@300;400;500&display=swap');
 
 /* =====================
    1. ПЕРЕМЕННЫЕ И СБРОС
@@ -557,13 +550,41 @@ section {
   border-color: rgba(255,255,255,0.8);
 }
 
-.footer-copy {
+/* НИЖНЯЯ ПАНЕЛЬ С ДВУСТОРОННИМ ВЫРАВНИВАНИЕМ */
+.footer-bottom {
   max-width: var(--max-w);
   margin: 32px auto 0;
+  display: flex;
+  justify-content: space-between; /* Разносит элементы по краям */
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-copy {
   font-size: 11px;
   letter-spacing: 0.1em;
-  color: #777777;            
-  text-align: center;
+  color: #777777;
+  text-align: left;
+}
+
+.footer-author {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #777777;
+  text-align: right; /* Строго под кнопками справа */
+}
+
+.footer-author a {
+  color: var(--pink-dark);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 160, 164, 0.3);
+  transition: all 0.3s ease;
+}
+
+.footer-author a:hover {
+  color: var(--white);
+  border-bottom-color: var(--white);
 }
 
 /* =====================
@@ -579,12 +600,22 @@ section {
     flex-wrap: wrap;
   }
   .contact-btn { flex: 1 1 180px; min-width: 0; }
+  
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .footer-copy, .footer-author {
+    text-align: center;
+  }
 }
 
 @media (max-width: 600px) {
   .nav-links { display: none; }
 
-  /* Вот он — фикс для мобильного Pinterst (2 колонки) */
+  /* Фикс для мобильного Pinterest (2 колонки) */
   .gallery-masonry {
     column-count: 2;
     column-gap: 12px;
@@ -598,7 +629,6 @@ section {
 
   .pricing-grid { grid-template-columns: 1fr; }
   .pricing-card { border-right: none; border-bottom: 1px solid var(--gray-mid); }
-
   .hero-frame { display: none; }
 }
 
@@ -674,55 +704,21 @@ section {
   opacity: 1;
   transform: translateY(0);
 }
-/* СКРОЛЛБАР */
 
-/* Ширина всего скроллбара */
+/* СКРОЛЛБАР */
 ::-webkit-scrollbar {
   width: 8px;
 }
-
-/* Убираем стрелочки сверху и снизу */
 ::-webkit-scrollbar-button {
   display: none;
 }
-
-/* Фон скроллбара (делаем цветом страницы - белый) */
 ::-webkit-scrollbar-track {
   background: #ffffff;
 }
-
-/* Сам "бегунок" (нежно-розовый) */
 ::-webkit-scrollbar-thumb {
-  background: #c9a0a4; /* Твой фирменный цвет */
-  border-radius: 4px; /* Делаем края скругленными */
+  background: #c9a0a4;
+  border-radius: 4px;
 }
-
-/* Эффект при наведении на бегунок (чуть темнее для интерактивности) */
 ::-webkit-scrollbar-thumb:hover {
   background: #b58d91; 
-}
-/* ФУТЕР И ПОДПИСЬ */
-.footer {
-  text-align: center;
-  padding: 40px 20px;
-  font-family: 'Cormorant Garamond', serif; /* Или твой основной шрифт */
-  font-size: 14px;
-  opacity: 0.6; /* Легкая прозрачность для элегантности */
-  transition: opacity 0.3s ease;
-}
-
-.footer:hover {
-  opacity: 1; /* Становится ярче при наведении */
-}
-
-.footer a {
-  color: #c9a0a4; /* Твой нежно-розовый цвет */
-  text-decoration: none;
-  border-bottom: 1px solid #c9a0a4; /* Подчеркивание цветом */
-  transition: all 0.3s ease;
-}
-
-.footer a:hover {
-  color: #111111;
-  border-bottom: 1px solid #111111;
 }
