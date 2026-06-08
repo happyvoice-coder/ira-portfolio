@@ -1,183 +1,710 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BYBOLDENKOI — Фотограф & Контент-креатор</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* ============================================================
+   BYBOLDENKOI — Стили сайта-визитки (Премиум-версия с эффектами)
+============================================================ */
 
-  <!-- ЭКРАН ЗАГРУЗКИ (PRELOADER) -->
-  <div id="preloader">
-    <div class="preloader-content">
-      <span class="preloader-logo">BYBOLDENKOI</span>
-      <div class="preloader-line-wrap">
-        <div class="preloader-line"></div>
-      </div>
-    </div>
-  </div>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Caveat:wght@400;500&family=Montserrat:wght@300;400;500&display=swap');
 
-  <!-- НАВИГАЦИЯ -->
-  <nav class="nav">
-    <a href="#" class="nav-logo">BYBOLDENKOI</a>
-    <div class="nav-links">
-      <a href="#portfolio">Портфолио</a>
-      <a href="#pricing">Стоимость</a>
-      <a href="#contacts">Контакты</a>
-    </div>
-  </nav>
+/* =====================
+   ЭЛЕГАНТНЫЙ КАСТОМНЫЙ СКРОЛЛБАР
+======================== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+  background: #e0dedd;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c9a0a4;
+}
 
-  <!-- ПЕРВЫЙ ЭКРАН (HERO) -->
-  <header class="hero">
-    <div class="hero-logo-block">
-      <span class="hero-script-accent">Aesthetics & Lifestyle</span>
-      <h1 class="hero-logo">BYBOLDENKOI</h1>
-      <p class="hero-tagline">Искусство сохранять ваши подлинные моменты</p>
-    </div>
-    
-    <div class="hero-image-wrap">
-      <!-- Главная картинка загружается сразу (без lazy), чтобы не было скачков -->
-      <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=1200" class="hero-img" alt="Главное фото">
-      <div class="hero-frame"></div>
-    </div>
-    
-    <p class="hero-sub">Профессиональная съемка в Babruysk и по всей Беларуси</p>
-    <a href="#portfolio" class="hero-arrow">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-        <path d="M12 5v14M5 12l7 7 7-7"/>
-      </svg>
-    </a>
-  </header>
+/* =====================
+   1. ПЕРЕМЕННЫЕ И СБРОС
+======================== */
+:root {
+  --white: #ffffff;
+  --black: #111111;
+  --gray-light: #f5f5f3;
+  --gray-mid: #e0dedd;
+  --readable: #333333;   
+  --pink: #E8C5C8;
+  --pink-dark: #c9a0a4;
 
-  <!-- ГАЛЕРЕЯ / ПОРТФОЛИО (С анимацией плавного появления reveal) -->
-  <section id="portfolio" class="portfolio reveal">
-    <div class="section-header">
-      <span class="section-script">Portfolio</span>
-      <h2 class="section-title">Галерея работ</h2>
-    </div>
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-script: 'Caveat', cursive;
+  --font-sans: 'Montserrat', sans-serif;
 
-    <div class="gallery-masonry">
-      <!-- Ко всем картинкам ниже добавлено loading="lazy" для высокой скорости загрузки сайта -->
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600" loading="lazy" alt="Портрет">
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1520854221256-17451cc35953?q=80&w=600" loading="lazy" alt="Love Story">
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600" loading="lazy" alt="Свадебная съемка">
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600" loading="lazy" alt="Индивидуальная фотосессия">
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=600" loading="lazy" alt="Fashion">
-      </div>
-    </div>
-  </section>
+  --max-w: 1280px;
+  --side-pad: clamp(20px, 5vw, 80px);
+}
 
-  <!-- ПРАЙС / СТОИМОСТЬ (С анимацией плавного появления reveal) -->
-  <section id="pricing" class="pricing reveal">
-    <div class="section-header">
-      <span class="section-script">Tariffs</span>
-      <h2 class="section-title">Стоимость услуг</h2>
-    </div>
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    <!-- Интерактивная сетка цен -->
-    <div class="pricing-grid">
-      
-      <!-- Карточка 1 -->
-      <div class="pricing-card">
-        <div class="pricing-card-top">
-          <span class="pricing-script-label">Light</span>
-          <h3 class="pricing-card-title">Экспресс-съемка <em>Для быстрых задач</em></h3>
-        </div>
-        <ul class="pricing-list">
-          <li>
-            <span class="pricing-duration">1 ЧАС СЪЕМКИ</span>
-            <div class="pricing-dots"></div>
-            <span class="pricing-price">120 BYN</span>
-          </li>
-        </ul>
-        <p class="pricing-note-inline">Отлично подойдет для контента в соцсети или лаконичного портрета.</p>
-      </div>
+html, body { 
+  scroll-behavior: smooth; 
+  font-size: 16px; 
+  overflow-x: hidden;
+  max-width: 100%;
+}
 
-      <!-- Карточка 2 (Акцентная) -->
-      <div class="pricing-card pricing-card--accent">
-        <div class="pricing-card-top">
-          <span class="pricing-script-label">Standard</span>
-          <h3 class="pricing-card-title">Прогулочная / Студия <em>Популярный выбор</em></h3>
-        </div>
-        <ul class="pricing-list">
-          <li>
-            <span class="pricing-duration">2 ЧАСА СЪЕМКИ</span>
-            <div class="pricing-dots"></div>
-            <span class="pricing-price">220 BYN</span>
-          </li>
-        </ul>
-        <p class="pricing-note-inline">Тщательно продуманная история, раскрывающая вашу индивидуальность.</p>
-      </div>
+body {
+  background-color: var(--white);
+  color: var(--black);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
 
-      <!-- Карточка 3 -->
-      <div class="pricing-card">
-        <div class="pricing-card-top">
-          <span class="pricing-script-label">Premium</span>
-          <h3 class="pricing-card-title">Максимальный пакет <em>Все включено</em></h3>
-        </div>
-        <ul class="pricing-list">
-          <li>
-            <span class="pricing-duration">ДО 4 ЧАСОВ</span>
-            <div class="pricing-dots"></div>
-            <span class="pricing-price">400 BYN</span>
-          </li>
-        </ul>
-        <p class="pricing-note-inline">Полный съемочный день, детальный разбор концепции и образов.</p>
-      </div>
+img { display: block; width: 100%; height: auto; object-fit: cover; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
 
-    </div>
+/* =====================
+   СТИЛИ ЭКРАНА ЗАГРУЗКИ (PRELOADER)
+======================== */
+#preloader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: var(--white);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
 
-    <!-- Что включено во все пакеты -->
-    <div class="pricing-includes">
-      <h4 class="pricing-includes-title">Что включено в стоимость:</h4>
-      <ul class="pricing-includes-list">
-        <li>Консультация, помощь в подборе локаций и образов</li>
-        <li>Авторская цветокоррекция <strong>всех удачных кадров</strong></li>
-        <li>Глубокая ретушь лучших снимков</li>
-        <li>Закрытый доступ к фотографиям на облачном диске</li>
-      </ul>
-    </div>
-  </section>
+#preloader.loaded {
+  opacity: 0;
+  pointer-events: none;
+}
 
-  <!-- ФУТЕР / КОНТАКТЫ -->
-  <footer id="contacts" class="footer">
-    <div class="footer-inner">
-      <div class="footer-logo-block">
-        <span class="footer-script">Say Hello</span>
-        <h2 class="footer-logo">BYBOLDENKOI</h2>
-        <p class="footer-tagline-small">Доступен для съемок по всей Беларуси</p>
-      </div>
-      
-      <div class="footer-contacts">
-        <a href="https://instagram.com" target="_blank" class="contact-btn contact-btn--ig">
-          <span>Instagram</span>
-        </a>
-        <a href="https://t.me" target="_blank" class="contact-btn contact-btn--tg">
-          <span>Telegram</span>
-        </a>
-      </div>
-    </div>
-    <p class="footer-copy">&copy; 2026 BYBOLDENKOI. All rights reserved.</p>
-  </footer>
+.preloader-content {
+  text-align: center;
+}
 
-  <!-- КНОПКА НАВЕРХ -->
-  <button class="scroll-top" aria-label="Наверх">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M12 19V5M5 12l7-7 7 7"/>
-    </svg>
-  </button>
+.preloader-logo {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: var(--black);
+  display: block;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
 
-  <!-- ПОДКЛЮЧЕНИЕ СКРИПТОВ -->
-  <script src="script.js"></script>
-</body>
-</html>
+.preloader-line-wrap {
+  width: 140px;
+  height: 1px;
+  background-color: var(--gray-mid);
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.preloader-line {
+  width: 60px;
+  height: 100%;
+  background-color: var(--pink-dark);
+  position: absolute;
+  animation: preloaderAnim 1.6s infinite ease-in-out;
+}
+
+@keyframes preloaderAnim {
+  0% { left: -60px; }
+  100% { left: 140px; }
+}
+
+/* =====================
+   КЛАССЫ ДЛЯ ПЛАВНОГО ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ
+======================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s cubic-bezier(0.215, 0.61, 0.355, 1), 
+              transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================
+   2. НАВИГАЦИЯ
+======================== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px var(--side-pad);
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--gray-mid);
+}
+
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: clamp(13px, 1.6vw, 16px);
+  letter-spacing: 0.3em;
+  font-weight: 600;
+  color: var(--black);
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+}
+.nav-logo:hover { opacity: 0.6; }
+
+.nav-links { display: flex; gap: clamp(24px, 3vw, 48px); }
+
+.nav-links a {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);        
+  font-weight: 400;
+  transition: opacity 0.3s;
+}
+.nav-links a:hover { opacity: 0.5; }
+
+/* =====================
+   3. HERO (ПЕРВЫЙ ЭКРАН)
+======================== */
+.hero {
+  padding-top: 80px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-logo-block {
+  text-align: center;
+  padding: 60px var(--side-pad) 30px;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 1.2s ease both;
+}
+
+.hero-script-accent {
+  display: block;
+  font-family: var(--font-script);
+  font-size: clamp(20px, 3vw, 28px);
+  color: var(--pink-dark);
+  margin-bottom: 6px;
+}
+
+.hero-logo {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 6vw, 72px);
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--black);
+  line-height: 1;
+}
+
+.hero-tagline {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--readable);     
+  font-weight: 400;
+  margin-top: 14px;
+}
+
+.hero-image-wrap {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 var(--side-pad);
+  position: relative;
+  animation: fadeUp 1.4s ease 0.2s both;
+}
+
+.hero-img {
+  width: 100%;
+  height: clamp(300px, 55vh, 620px);
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+.hero-frame {
+  position: absolute;
+  inset: 12px calc(var(--side-pad) + 12px);
+  border: 1px solid rgba(255,255,255,0.45);
+  pointer-events: none;
+}
+
+.hero-sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(16px, 2vw, 21px);
+  color: var(--readable);
+  font-weight: 400;
+  text-align: center;
+  padding: 24px var(--side-pad) 0;
+  letter-spacing: 0.04em;
+  animation: fadeUp 1.4s ease 0.35s both;
+}
+
+.hero-arrow {
+  display: block;
+  padding: 12px 24px 20px;
+  opacity: 0.5;
+  transition: opacity 0.3s, transform 0.3s;
+  animation: fadeUp 1.4s ease 0.5s both, bounce 2.5s ease 2s infinite;
+}
+.hero-arrow:hover { opacity: 1; }
+
+/* =====================
+   4. ОБЩИЕ СТИЛИ СЕКЦИЙ
+======================== */
+section {
+  padding: clamp(40px, 6vw, 80px) var(--side-pad);
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(30px, 5vw, 60px);
+}
+
+.section-script {
+  display: block;
+  font-family: var(--font-script);
+  font-size: clamp(22px, 3vw, 32px);
+  color: var(--pink-dark);
+  margin-bottom: 6px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+/* =====================
+   5. PORTFOLIO / ГАЛЕРЕЯ MASONRY
+======================== */
+.portfolio { background: var(--white); }
+
+.gallery-masonry {
+  column-count: 3;
+  column-gap: 20px;
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.gallery-item:hover img { transform: scale(1.03); }
+
+/* Разная высота для создания хаоса на ПК */
+.gallery-masonry .gallery-item:nth-child(3n+1) img { height: 440px; }
+.gallery-masonry .gallery-item:nth-child(3n+2) img { height: 320px; }
+.gallery-masonry .gallery-item:nth-child(3n) img { height: 520px; }
+
+/* =====================
+   6. PRICING (ПРАЙС) + ИНТЕРАКТИВНЫЙ ЭФФЕКТ СМЕНЫ ЦВЕТА
+======================== */
+.pricing {
+  background: var(--gray-light);
+  max-width: 100%;
+  padding: clamp(60px, 8vw, 100px) var(--side-pad);
+}
+
+.pricing .section-header {
+  max-width: var(--max-w);
+  margin: 0 auto clamp(40px, 6vw, 60px);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2px;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  border: 1px solid var(--gray-mid);
+  transition: all 0.4s ease;
+}
+
+.pricing-card {
+  background: var(--white);
+  padding: clamp(32px, 4vw, 52px) clamp(24px, 3vw, 44px);
+  border-right: 1px solid var(--gray-mid);
+  /* Добавляем плавность для hover эффектов затухания */
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              background 0.3s, color 0.3s;
+}
+.pricing-card:last-child { border-right: none; }
+
+.pricing-card--accent {
+  background: var(--black);
+  color: var(--white);
+}
+.pricing-card--accent .pricing-script-label { color: var(--pink); }
+.pricing-card--accent .pricing-price { color: var(--pink); }
+.pricing-card--accent .pricing-duration { color: #cccccc; }  
+.pricing-card--accent .pricing-note-inline { color: #cccccc; }
+.pricing-card--accent .pricing-card-title { color: var(--white); }
+.pricing-card--accent .pricing-card-title em { color: #cccccc; }
+
+/* ЭФФЕКТ СМЕНЫ ЦВЕТА И ФОКУСА: 
+   При наведении на сетку, все карточки, кроме активной, приглушаются и слегка уменьшаются */
+@media (min-width: 901px) {
+  .pricing-grid:hover .pricing-card:not(:hover) {
+    opacity: 0.45;
+    transform: scale(0.98);
+    filter: grayscale(20%);
+  }
+  /* Активная карточка становится чуть выразительнее */
+  .pricing-card:hover {
+    transform: scale(1.01);
+    z-index: 5;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+  }
+}
+
+.pricing-card-top { margin-bottom: 28px; }
+
+.pricing-script-label {
+  display: block;
+  font-family: var(--font-script);
+  font-size: clamp(18px, 2.5vw, 24px);
+  color: var(--pink-dark);
+  margin-bottom: 10px;
+}
+
+.pricing-card-title {
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  color: var(--black);
+}
+
+.pricing-card-title em {
+  display: block;
+  font-size: 0.7em;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--readable);   
+  margin-top: 6px;
+}
+
+.pricing-list { display: flex; flex-direction: column; gap: 16px; }
+.pricing-list li { display: flex; align-items: baseline; gap: 8px; }
+
+.pricing-duration {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--readable);   
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.pricing-dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--gray-mid);
+  position: relative;
+  top: -4px;
+}
+
+.pricing-price {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  color: var(--black);
+}
+
+.pricing-note-inline {
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+  color: var(--readable);   
+}
+
+.pricing-includes {
+  max-width: var(--max-w);
+  margin: 48px auto 0;
+  padding: 40px clamp(24px, 4vw, 52px);
+  border: 1px solid var(--gray-mid);
+  background: var(--white);
+}
+
+.pricing-includes-title {
+  font-family: var(--font-serif);
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  color: var(--black);
+}
+
+.pricing-includes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px 32px;
+}
+
+.pricing-includes-list li {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--black);      
+  padding-left: 14px;
+  position: relative;
+}
+.pricing-includes-list li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 9px;
+  width: 5px; height: 1px;
+  background: var(--pink-dark);
+}
+.pricing-includes-list li strong {
+  font-weight: 600;
+  color: var(--black);
+}
+
+/* =====================
+   7. FOOTER / КОНТАКТЫ
+======================== */
+.footer {
+  background: var(--black);
+  color: var(--white);
+  padding: clamp(60px, 8vw, 100px) var(--side-pad) 40px;
+}
+
+.footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.footer-logo-block { flex-shrink: 0; }
+
+.footer-script {
+  display: block;
+  font-family: var(--font-script);
+  font-size: clamp(22px, 3vw, 30px);
+  color: var(--pink);
+  margin-bottom: 8px;
+}
+
+.footer-logo {
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 3.5vw, 42px);
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.footer-tagline-small {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #aaaaaa;            
+  margin-top: 10px;
+}
+
+.footer-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-end;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  border: 1px solid rgba(255,255,255,0.6);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+  min-width: 200px;
+  justify-content: center;
+}
+
+.contact-btn--ig:hover {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: var(--black);
+}
+.contact-btn--tg:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.8);
+}
+
+.footer-copy {
+  max-width: var(--max-w);
+  margin: 32px auto 0;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #777777;            
+  text-align: center;
+}
+
+/* =====================
+   8. АДАПТИВНОСТЬ
+======================== */
+@media (max-width: 900px) {
+  .gallery-masonry { column-count: 2; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .footer-contacts {
+    align-items: flex-start;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .contact-btn { flex: 1 1 180px; min-width: 0; }
+}
+
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+
+  .hero {
+    min-height: auto; 
+    padding-top: 100px;
+    padding-bottom: 10px; 
+  }
+  .hero-logo-block { padding: 20px var(--side-pad) 20px; }
+  .hero-image-wrap { padding: 0 15px; }
+  .hero-img { height: 320px; } 
+  .hero-sub { padding: 20px var(--side-pad) 0; font-size: 16px; }
+  .hero-arrow { padding: 10px 24px 0px; }
+
+  .gallery-masonry {
+    column-count: 2; 
+    column-gap: 12px; 
+  }
+  .gallery-item { margin-bottom: 12px; }
+  
+  .gallery-masonry .gallery-item:nth-child(n) img {
+    height: auto !important; 
+    max-height: none !important;
+    object-fit: contain;
+  }
+
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card { border-right: none; border-bottom: 1px solid var(--gray-mid); }
+  .hero-frame { display: none; }
+}
+
+@media (max-width: 400px) {
+  .footer-contacts { flex-direction: column; }
+  .contact-btn { width: 100%; }
+}
+
+/* =====================
+   9. КНОПКА «НАВЕРХ»
+======================== */
+.scroll-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  left: auto; 
+  z-index: 200;
+  width: 48px;
+  height: 48px;
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--black); 
+  border-radius: 50%; 
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.25s, color 0.25s;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-top:hover {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+@media (max-width: 600px) {
+  .scroll-top {
+    bottom: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* =====================
+   10. АНИМАЦИИ
+======================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
