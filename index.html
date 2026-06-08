@@ -218,6 +218,10 @@
   </button>
 
   <script>
+    // Принудительный сброс скролла в начало при обновлении страницы
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
     window.addEventListener('load', () => {
   const preloader = document.getElementById('preloader');
   
