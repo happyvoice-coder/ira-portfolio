@@ -220,12 +220,18 @@
   </button>
 
   <script>
-    // Скрытие прелоадера после загрузки страницы
-window.addEventListener('load', () => {
+    window.addEventListener('load', () => {
   const preloader = document.getElementById('preloader');
+  
+  // Даем контенту полсекунды на отрисовку
   setTimeout(() => {
     preloader.classList.add('loaded');
-  }, 500); // 500мс задержка, чтобы анимация успела красиво проиграться
+    
+    // Удаляем элемент из кода через 0.5 сек (время анимации fade)
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 500);
+  }, 300);
 });
     // Кнопка «наверх»
     const btn = document.getElementById('scrollTop');
