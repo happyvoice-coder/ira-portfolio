@@ -217,6 +217,13 @@
   </button>
 
   <script>
+    // Скрытие прелоадера после загрузки страницы
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  setTimeout(() => {
+    preloader.classList.add('loaded');
+  }, 500); // 500мс задержка, чтобы анимация успела красиво проиграться
+});
     // Кнопка «наверх»
     const btn = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
