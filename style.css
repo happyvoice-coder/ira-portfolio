@@ -2,15 +2,20 @@
    BYBOLDENKOI — Стили сайта-визитки v4 (Финальная сборка)
 ============================================================ */
 
-/* ПРЕЛОАДЕР - ФИКС ЦЕНТРОВКИ */
+/* ПРЕЛОАДЕР - ЖЕЛЕЗОБЕТОННАЯ ЦЕНТРОВКА */
 #preloader {
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0; left: 0; 
+  width: 100%; height: 100%;
   background-color: #ffffff;
   z-index: 9999;
+  
+  /* Делаем родителя контейнером, который всё центрирует */
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  
   transition: opacity 0.5s ease;
 }
 
@@ -19,21 +24,14 @@
   pointer-events: none;
 }
 
-/* ЭТОТ БЛОК ОТВЕЧАЕТ ЗА ИДЕАЛЬНУЮ ЦЕНТРОВКУ */
-.preloader-wrap { 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  justify-content: center;
-  width: 100%;
-}
-
 .preloader-logo {
   font-family: 'Cormorant Garamond', serif;
   font-size: 24px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   margin-bottom: 12px;
+  /* Добавили, чтобы текст тоже не съезжал */
+  text-align: center; 
 }
 
 .preloader-bar {
@@ -55,6 +53,7 @@
   50% { left: 0; }
   100% { left: 100%; }
 }
+
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Caveat:wght@400;500&family=Montserrat:wght@300;400;500&display=swap');
 
