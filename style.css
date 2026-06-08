@@ -701,3 +701,28 @@ section {
 ::-webkit-scrollbar-thumb:hover {
   background: #b58d91; 
 }
+/* ФУТЕР И ПОДПИСЬ */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  font-family: 'Cormorant Garamond', serif; /* Или твой основной шрифт */
+  font-size: 14px;
+  opacity: 0.6; /* Легкая прозрачность для элегантности */
+  transition: opacity 0.3s ease;
+}
+
+.footer:hover {
+  opacity: 1; /* Становится ярче при наведении */
+}
+
+.footer a {
+  color: #c9a0a4; /* Твой нежно-розовый цвет */
+  text-decoration: none;
+  border-bottom: 1px solid #c9a0a4; /* Подчеркивание цветом */
+  transition: all 0.3s ease;
+}
+
+.footer a:hover {
+  color: #111111;
+  border-bottom: 1px solid #111111;
+}
