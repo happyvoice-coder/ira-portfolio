@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Caveat:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
 
@@ -32,7 +32,7 @@
     <div class="hero-logo-block">
       <span class="hero-script-accent">photography by</span>
       <h1 class="hero-logo">BYBOLDENKOI</h1>
-      <p class="hero-tagline">Бобруйск · Беларусь</p>
+      <p class="hero-tagline">Минск · Беларусь</p>
     </div>
 
     <!-- ================================================
@@ -56,7 +56,7 @@
       Ловлю мгновения, которые остаются навсегда
     </p>
 
-    <!-- Стрелка вниз -->
+    <!-- Стрелка вниз — сразу под текстом, без отступа -->
     <a href="#portfolio" class="hero-arrow" aria-label="Перейти к портфолио">
       <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line x1="12" y1="0" x2="12" y2="32" stroke="#111111" stroke-width="1"/>
@@ -249,7 +249,7 @@
       <div class="footer-logo-block">
         <span class="footer-script">со мной можно</span>
         <p class="footer-logo">BYBOLDENKOI</p>
-        <p class="footer-tagline-small">Бобруйск · Беларусь</p>
+        <p class="footer-tagline-small">Минск · Беларусь</p>
       </div>
 
       <div class="footer-contacts">
@@ -292,9 +292,37 @@
 
     </div>
 
-    <p class="footer-copy">© 2025 BYBOLDENKOI. Все права защищены.</p>
+    <p class="footer-copy">© 2026 BYBOLDENKOI. Все права защищены.</p>
 
   </footer>
+
+  <!-- ============================
+       КНОПКА «НАВЕРХ»
+       Появляется при скролле вниз
+  =============================== -->
+  <button class="scroll-top" id="scrollTop" aria-label="Наверх">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="18" x2="10" y2="3" stroke="currentColor" stroke-width="1.2"/>
+      <polyline points="4,9 10,3 16,9" stroke="currentColor" stroke-width="1.2" fill="none"/>
+    </svg>
+  </button>
+
+  <script>
+    // Кнопка «наверх» — появляется когда прокрутили больше половины страницы
+    const btn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const total = document.body.scrollHeight - window.innerHeight;
+      if (scrolled > total * 0.4) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    });
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 
 </body>
 </html>
