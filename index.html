@@ -205,6 +205,17 @@
     </svg>
   </button>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">&#x2715;</button>
+    <button class="lightbox-btn lightbox-prev" id="lightboxPrev" aria-label="Предыдущее">&#8592;</button>
+    <div class="lightbox-inner">
+      <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+    </div>
+    <button class="lightbox-btn lightbox-next" id="lightboxNext" aria-label="Следующее">&#8594;</button>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+
   <script>
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
@@ -233,6 +244,69 @@
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // ===== LIGHTBOX =====
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      const img = galleryItems[index];
+      lightboxImg.src = img.src.replace('w=600', 'w=1400');
+      lightboxImg.alt = img.alt;
+      lightboxCounter.textContent = (index + 1) + ' / ' + galleryItems.length;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function goTo(index) {
+      currentIndex = (index + galleryItems.length) % galleryItems.length;
+      lightboxImg.classList.add('fading');
+      setTimeout(() => {
+        lightboxImg.src = galleryItems[currentIndex].src.replace('w=600', 'w=1400');
+        lightboxImg.alt = galleryItems[currentIndex].alt;
+        lightboxCounter.textContent = (currentIndex + 1) + ' / ' + galleryItems.length;
+        lightboxImg.classList.remove('fading');
+      }, 200);
+    }
+
+    galleryItems.forEach((img, i) => {
+      img.parentElement.addEventListener('click', () => openLightbox(i));
+    });
+
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxPrev').addEventListener('click', () => goTo(currentIndex - 1));
+    document.getElementById('lightboxNext').addEventListener('click', () => goTo(currentIndex + 1));
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') goTo(currentIndex - 1);
+      if (e.key === 'ArrowRight') goTo(currentIndex + 1);
+    });
+
+    // Свайп на мобильных
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) goTo(currentIndex + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+    // ===== END LIGHTBOX =====
 
     const revealElements = document.querySelectorAll('.reveal');
     const revealOnScroll = () => {
