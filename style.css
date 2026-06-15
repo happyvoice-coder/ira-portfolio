@@ -46,6 +46,50 @@
   100% { left: 100%; }
 }
 
+/* =====================================================
+   КАК ПОМЕНЯТЬ ШРИФТЫ (читай внимательно, это просто)
+   =====================================================
+   Сайт использует 3 «слота» шрифтов — они объявлены чуть ниже
+   как переменные --font-serif / --font-script / --font-sans.
+   Все элементы сайта берут шрифт из этих переменных, поэтому
+   менять нужно только в ДВУХ местах:
+
+   ШАГ 1. Загрузка шрифта (файл index.html)
+   -----------------------------------------
+   В файле index.html, в самом <head>, есть строка вида:
+     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:..." rel="stylesheet" />
+   Зайди на https://fonts.google.com, выбери нужный шрифт,
+   нажми "Get font" -> "Get embed code" и скопируй ссылку <link>
+   целиком — она ЗАМЕНЯЕТ (или дополняет через &family=...) текущую.
+
+   ШАГ 2. Подключение шрифта к сайту (этот файл, переменные ниже)
+   -----------------------------------------
+   Впиши точное название шрифта (как оно написано в ссылке из
+   шага 1, с пробелом вместо "+") в одну из переменных:
+
+     --font-serif  — главный «вывесочный» шрифт:
+                     логотип BYBOLDENKOI, заголовки разделов
+                     (ПОРТФОЛИО, СТОИМОСТЬ УСЛУГ), цены, заголовки
+                     карточек прайса. Сейчас: Cormorant Garamond.
+
+     --font-script — рукописный акцентный шрифт:
+                     надпись "избранное" над "ПОРТФОЛИО".
+                     Сейчас: Caveat.
+
+     --font-sans   — основной текст: меню навигации, теги,
+                     подписи к ценам, текст в футере и т.д.
+                     Сейчас: Montserrat.
+
+   Пример: хочешь заменить Montserrat на "Inter".
+     1) В index.html добавляешь в ссылку Google Fonts &family=Inter:wght@300;400;500
+     2) Здесь меняешь: --font-sans: 'Inter', sans-serif;
+   Готово — все элементы, использующие --font-sans, обновятся сами.
+
+   ВАЖНО: указывай в ссылке Google Fonts все нужные "веса" (Weight),
+   которые используются в сайте — иначе шрифт подгрузится, но
+   нужная "тонкость/жирность" (300/400/500/600) не сработает.
+   ===================================================== */
+
 /* =====================
    1. ПЕРЕМЕННЫЕ И СБРОС
 ======================== */
@@ -58,6 +102,7 @@
   --pink:       #E8C5C8;
   --pink-dark:  #c9a0a4;
 
+  /* Шрифты сайта — подробная инструкция по замене написана выше */
   --font-serif:  'Cormorant Garamond', Georgia, serif;
   --font-script: 'Caveat', cursive;
   --font-sans:   'Montserrat', sans-serif;
@@ -132,7 +177,13 @@ ul  { list-style: none; }
 ======================== */
 .hero {
   padding-top: 80px;
-  min-height: 100vh;
+  /* min-height: 100vh; — убрано: на экранах, где содержимое hero
+     не занимало весь экран, эта строка растягивала блок на всю
+     высоту окна и создавала большой пустой отступ перед "Портфолио".
+     Теперь высота секции = высота её содержимого. Если нужно
+     вернуть «полноэкранный» эффект, можно поставить, например,
+     min-height: 90vh; — но тогда лишнее пространство снова может
+     появиться на низких/широких экранах. */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -327,16 +378,10 @@ section {
 }
 .pricing-card:last-child { border-right: none; }
 
-.pricing-card--accent {
-  background: var(--black);
-  color: var(--white);
-}
-.pricing-card--accent .pricing-script-label { color: var(--pink); }
-.pricing-card--accent .pricing-price        { color: var(--pink); }
-.pricing-card--accent .pricing-duration     { color: #cccccc; }  
-.pricing-card--accent .pricing-note-inline  { color: #cccccc; }
-.pricing-card--accent .pricing-card-title   { color: var(--white); }
-.pricing-card--accent .pricing-card-title em { color: #cccccc; }
+/* Карточка "Свадебная, праздничная" раньше была чёрной с розовым
+   текстом. Теперь оформлена так же, как остальные две колонки —
+   белый фон и чёрный текст (специальные переопределения убраны,
+   карточка наследует обычные стили .pricing-card). */
 
 .pricing-card-top { margin-bottom: 28px; }
 
@@ -470,7 +515,9 @@ section {
 .footer {
   background: var(--black);
   color: var(--white);
-  padding: clamp(60px, 8vw, 100px) var(--side-pad) 40px;
+  /* Уменьшен верхний отступ (было clamp(60px, 8vw, 100px)) —
+     футер "снизу" стал менее растянутым по высоте */
+  padding: clamp(40px, 6vw, 72px) var(--side-pad) 32px;
 }
 
 .footer-inner {
@@ -480,7 +527,8 @@ section {
   align-items: flex-end;
   justify-content: space-between;
   gap: 48px;
-  padding-bottom: 60px;
+  /* Уменьшен отступ перед разделительной линией (было 60px) */
+  padding-bottom: 40px;
   border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 
@@ -549,7 +597,8 @@ section {
 /* НИЖНЯЯ ПАНЕЛЬ */
 .footer-bottom {
   max-width: var(--max-w);
-  margin: 32px auto 0;
+  /* Уменьшен отступ сверху (было 32px) */
+  margin: 24px auto 0;
   display: flex;
   justify-content: space-between; /* Разносит элементы по краям */
   align-items: center;
