@@ -194,7 +194,10 @@ ul  { list-style: none; }
 
 .hero-logo-block {
   text-align: center;
-  padding: 80px var(--side-pad) 40px;
+  /* Было: padding: 80px var(--side-pad) 40px;
+     Сделано отзывчивым через clamp() — на мобильных верх/низ
+     отступа меньше, на широких экранах остаётся похожим на прежнее */
+  padding: clamp(24px, 6vw, 64px) var(--side-pad) clamp(16px, 3vw, 40px);
   position: relative;
   z-index: 2;
   animation: fadeUp 1.2s ease both;
@@ -266,7 +269,9 @@ ul  { list-style: none; }
 
 .hero-arrow {
   display: block;
-  padding: 16px 24px 24px;
+  /* Было: padding: 16px 24px 24px; — уменьшено, чтобы сократить
+     отступ перед "Портфолио" */
+  padding: 8px 24px 8px;
   opacity: 0.5;
   transition: opacity 0.3s, transform 0.3s;
   animation: fadeUp 1.4s ease 0.5s both, bounce 2.5s ease 2s infinite;
@@ -307,7 +312,12 @@ section {
 /* =====================
    5. PORTFOLIO / GALLERY
 ======================== */
-.portfolio { background: var(--white); }
+.portfolio {
+  background: var(--white);
+  /* Уменьшенный верхний отступ — секция начинается сразу
+     после стрелки, без лишнего пустого места */
+  padding-top: clamp(16px, 3vw, 36px);
+}
 
 .gallery-masonry {
   column-count: 3;
@@ -659,6 +669,12 @@ section {
 
 @media (max-width: 600px) {
   .nav-links { display: none; }
+
+  /* Меньше отступ сверху hero на мобильных — навигация там ниже */
+  .hero { padding-top: 64px; }
+  .hero-logo-block { padding-top: 16px; padding-bottom: 12px; }
+  .hero-arrow { padding: 4px 24px 4px; }
+  .portfolio { padding-top: 12px; }
 
   /* Фикс для мобильного Pinterest (2 колонки) */
   .gallery-masonry {
