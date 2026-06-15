@@ -1,8 +1,4 @@
-/* ============================================================
-   BYBOLDENKOI — Стили сайта-визитки v4 (Финальная сборка)
-============================================================ */
-
-/* ПРЕЛОАДЕР - ЖЕЛЕЗОБЕТОННАЯ ЦЕНТРОВКА */
+/* ПРЕЛОАДЕР */
 #preloader {
   position: fixed;
   top: 0; left: 0; 
@@ -302,7 +298,7 @@ section {
 .gallery-item:nth-child(12) { animation-delay: 0.78s; }
 
 /* =====================
-   6. PRICING
+   6. ЦЕНЫ
 ======================== */
 .pricing {
   background: var(--gray-light);
@@ -550,7 +546,7 @@ section {
   border-color: rgba(255,255,255,0.8);
 }
 
-/* НИЖНЯЯ ПАНЕЛЬ С ДВУСТОРОННИМ ВЫРАВНИВАНИЕМ */
+/* НИЖНЯЯ ПАНЕЛЬ */
 .footer-bottom {
   max-width: var(--max-w);
   margin: 32px auto 0;
@@ -588,7 +584,7 @@ section {
 }
 
 /* =====================
-   8. АДАПТИВНОСТЬ И ФИКС PINTEREST НА МОБИЛЬНЫХ
+   8. ФИКС PINTEREST НА МОБ
 ======================== */
 @media (max-width: 900px) {
   .gallery-masonry { column-count: 2; }
@@ -682,7 +678,7 @@ section {
 }
 
 /* =====================
-   9. АНИМАЦИИ И REVEAL
+   9. АНИМАЦИИ 
 ======================== */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
