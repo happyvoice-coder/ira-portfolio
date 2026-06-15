@@ -9,6 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Caveat:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -47,9 +48,7 @@
       <div class="hero-frame"></div>
     </div>
 
-    <p class="hero-sub">
-      Ловлю мгновения, которые остаются навсегда
-    </p>
+    <p class="hero-sub">Ловлю мгновения, которые остаются навсегда</p>
 
     <a href="#portfolio" class="hero-arrow" aria-label="Перейти к портфолио">
       <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,6 +60,7 @@
 
   <section id="portfolio" class="portfolio reveal">
     <div class="section-header">
+      <span class="section-script">избранное</span>
       <h2 class="section-title">Портфолио</h2>
     </div>
 
@@ -124,7 +124,7 @@
         </div>
         <ul class="pricing-list">
           <li>
-            <span class="pricing-duration">с человека</span>
+            <span class="pricing-duration">with чел.</span>
             <span class="pricing-dots"></span>
             <span class="pricing-price">40 руб.</span>
           </li>
@@ -165,6 +165,7 @@
           </svg>
           Instagram
         </a>
+        
         <a href="https://t.me/boldenkoi" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn--tg">
           <svg class="contact-btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M22 2L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -203,7 +204,7 @@
       history.scrollRestoration = 'manual';
     }
     
-    // Прелоадер
+    // Функция скрытия экрана загрузки (прелоадера) после полной готовности сайта
     window.addEventListener('load', () => {
       const preloader = document.getElementById('preloader');
       setTimeout(() => {
@@ -214,7 +215,7 @@
       }, 300);
     });
 
-    // Индикатор скролла и кнопка "Наверх"
+    // Логика тонкого прогресс-бара и кнопки "Наверх"
     const btn = document.getElementById('scrollTop');
     const progressBar = document.getElementById('scrollProgress');
 
@@ -222,13 +223,13 @@
       const scrolled = window.scrollY;
       const total = document.documentElement.scrollHeight - window.innerHeight;
       
-      // Обновление прогресс-бара
+      // Вычисление процента прокрутки для полоски
       if (total > 0) {
         const progressPercentage = (scrolled / total) * 100;
         progressBar.style.width = `${progressPercentage}%`;
       }
 
-      // Видимость кнопки "Наверх"
+      // Показывать кнопку "Наверх" только если проскроллили 40% страницы
       if (scrolled > total * 0.4) {
         btn.classList.add('visible');
       } else {
@@ -236,22 +237,23 @@
       }
     });
 
+    // Плавный скролл наверх по клику
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ===== ОПТИМИЗИРОВАННЫЙ LIGHTBOX С ПРЕДЗАГРУЗКОЙ =====
+    // Логика работы умной галереи (Лайтбокса) с фоновой предзагрузкой
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxCounter = document.getElementById('lightboxCounter');
     const galleryImages = Array.from(document.querySelectorAll('.gallery-item img'));
     
-    // Формируем кэш-массив ссылок высокого разрешения
+    // Создаем список ссылок на большие картинки высокого качества (w=1400)
     const highResUrls = galleryImages.map(img => img.src.replace('w=600', 'w=1400'));
     const preloadedImages = [];
     let currentIndex = 0;
 
-    // Фоновая предзагрузка конкретного индекса
+    // Внутренняя фоновая загрузка картинки в память браузера
     function preloadImage(index) {
       const idx = (index + highResUrls.length) % highResUrls.length;
       if (!preloadedImages[idx]) {
@@ -260,18 +262,18 @@
       }
     }
 
-    // Умный прелоад соседей (следующая и предыдущая)
+    // Предзагрузка "соседей" (следующей и предыдущей картинки)
     function preloadNeighbors(index) {
       preloadImage(index + 1);
       preloadImage(index - 1);
     }
 
+    // Открытие окна просмотра
     function openLightbox(index) {
       currentIndex = index;
       lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'; // Отключаем прокрутку самого сайта
       
-      // Мгновенно ставим картинку (если она уже в кэше — покажется сразу без фриза)
       lightboxImg.src = highResUrls[index];
       lightboxImg.alt = galleryImages[index].alt;
       lightboxCounter.textContent = (index + 1) + ' / ' + galleryImages.length;
@@ -279,41 +281,45 @@
       preloadNeighbors(index);
     }
 
+    // Закрытие окна просмотра
     function closeLightbox() {
       lightbox.classList.remove('active');
-      document.body.style.overflow = '';
+      document.body.style.overflow = ''; // Возвращаем прокрутку сайту
     }
 
+    // Переключение картинок вперед / назад (убирает тормоза)
     function goTo(index) {
       currentIndex = (index + galleryImages.length) % galleryImages.length;
-      lightboxImg.classList.add('fading');
+      lightboxImg.classList.add('fading'); // Быстрое плавное скрытие текущей картинки
       
-      // Предзагружаем цель на случай, если ее еще нет
       preloadImage(currentIndex);
 
       setTimeout(() => {
         lightboxImg.src = highResUrls[currentIndex];
         lightboxImg.alt = galleryImages[currentIndex].alt;
         lightboxCounter.textContent = (currentIndex + 1) + ' / ' + galleryImages.length;
-        lightboxImg.classList.remove('fading');
+        lightboxImg.classList.remove('fading'); // Плавное появление новой картинки
         
-        // Как только переключили — готовим следующие скрытые изображения
-        preloadNeighbors(currentIndex);
-      }, 150); // Сократили тайм-аут анимации для быстрого отклика
+        preloadNeighbors(currentIndex); // Предзагружаем следующие
+      }, 150);
     }
 
+    // Вешаем событие клика на все миниатюры
     galleryImages.forEach((img, i) => {
       img.parentElement.addEventListener('click', () => openLightbox(i));
     });
 
+    // Обработчики кнопок управления лайтбокса
     document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
     document.getElementById('lightboxPrev').addEventListener('click', () => goTo(currentIndex - 1));
     document.getElementById('lightboxNext').addEventListener('click', () => goTo(currentIndex + 1));
 
+    // Закрытие по клику на темную область вокруг фото
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) closeLightbox();
     });
 
+    // Управление с клавиатуры
     document.addEventListener('keydown', (e) => {
       if (!lightbox.classList.contains('active')) return;
       if (e.key === 'Escape') closeLightbox();
@@ -321,7 +327,7 @@
       if (e.key === 'ArrowRight') goTo(currentIndex + 1);
     });
 
-    // Свайпы на мобильных
+    // Поддержка свайпов на телефонах
     let touchStartX = 0;
     lightbox.addEventListener('touchstart', (e) => {
       touchStartX = e.touches[0].clientX;
@@ -331,9 +337,8 @@
       const dx = e.changedTouches[0].clientX - touchStartX;
       if (Math.abs(dx) > 50) goTo(currentIndex + (dx < 0 ? 1 : -1));
     }, { passive: true });
-    // ===== END LIGHTBOX =====
 
-    // Скролл-анимации элементов
+    // Появление блоков при прокрутке страницы вниз
     const revealElements = document.querySelectorAll('.reveal');
     const revealOnScroll = () => {
       const windowHeight = window.innerHeight;
