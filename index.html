@@ -1,33 +1,23 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BYBOLDENKOI — Фотограф</title>
   
-  <!-- ФАВИКОН: минималистичный логотип-монограмма "B" (чёрный квадрат,
-       белая буква B serif-шрифтом — перекликается с оформлением футера).
-       Чтобы заменить: нарисуйте/сделайте свой SVG-логотип и вставьте
-       его код вместо текущего, либо замените всю строку на
-       <link rel="icon" href="favicon.png"> и положите файл favicon.png
-       рядом с index.html. -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23111111'/><text x='50' y='71' font-family='Georgia, %27Times New Roman%27, serif' font-size='62' fill='%23ffffff' text-anchor='middle'>B</text></svg>">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- ШРИФТЫ: чтобы поменять шрифт сайта — зайдите на https://fonts.google.com,
-       выберите нужный шрифт и вставьте/допишите его в ссылку ниже (через &family=...).
-       После этого впишите точное название шрифта в переменные --font-serif /
-       --font-script / --font-sans в файле style.css (там есть подробная
-       инструкция в самом начале файла). -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Caveat:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-</head>
 <body>
 
-  <!-- ЭКРАН ЗАГРУЗКИ С ПОЛОСКОЙ -->
+  <div class="scroll-progress-container">
+    <div id="scrollProgress"></div>
+  </div>
+
   <div id="preloader">
     <div class="preloader-logo">BYBOLDENKOI</div>
     <div class="preloader-bar"><div class="preloader-progress"></div></div>
@@ -44,7 +34,6 @@
 
   <section id="hero" class="hero">
     <div class="hero-logo-block">
-      
       <h1 class="hero-logo">BYBOLDENKOI</h1>
       <p class="hero-tagline">Бобруйск · Беларусь</p>
     </div>
@@ -72,7 +61,7 @@
 
   <section id="portfolio" class="portfolio reveal">
     <div class="section-header">
-      
+      <span class="section-script">избранное</span>
       <h2 class="section-title">Портфолио</h2>
     </div>
 
@@ -94,14 +83,12 @@
 
   <section id="pricing" class="pricing reveal">
     <div class="section-header">
-      
       <h2 class="section-title">СТОИМОСТЬ УСЛУГ</h2>
     </div>
 
     <div class="pricing-grid">
       <div class="pricing-card">
         <div class="pricing-card-top">
-          
           <h3 class="pricing-card-title">Индивидуальная,<br>семейная, парная,<br>с питомцами</h3>
         </div>
         <ul class="pricing-list">
@@ -120,7 +107,6 @@
 
       <div class="pricing-card pricing-card--accent">
         <div class="pricing-card-top">
-          
           <h3 class="pricing-card-title">Свадебная,<br>праздничная<br><small>(до 15 человек)</small></h3>
         </div>
         <ul class="pricing-list">
@@ -135,7 +121,6 @@
 
       <div class="pricing-card">
         <div class="pricing-card-top">
-          
           <h3 class="pricing-card-title">Выпускной, школьная,<br>групповые портреты<br><small>(более 5 человек)</small></h3>
         </div>
         <ul class="pricing-list">
@@ -168,7 +153,6 @@
   <footer id="contacts" class="footer reveal">
     <div class="footer-inner">
       <div class="footer-logo-block">
-        
         <p class="footer-logo">BYBOLDENKOI</p>
         <p class="footer-tagline-small">Бобруйск · Беларусь</p>
       </div>
@@ -205,7 +189,6 @@
     </svg>
   </button>
 
-  <!-- LIGHTBOX -->
   <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true">
     <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">&#x2715;</button>
     <button class="lightbox-btn lightbox-prev" id="lightboxPrev" aria-label="Предыдущее">&#8592;</button>
@@ -221,6 +204,7 @@
       history.scrollRestoration = 'manual';
     }
     
+    // Прелоадер
     window.addEventListener('load', () => {
       const preloader = document.getElementById('preloader');
       setTimeout(() => {
@@ -231,35 +215,69 @@
       }, 300);
     });
 
+    // Индикатор скролла и кнопка "Наверх"
     const btn = document.getElementById('scrollTop');
+    const progressBar = document.getElementById('scrollProgress');
+
     window.addEventListener('scroll', () => {
       const scrolled = window.scrollY;
-      const total = document.body.scrollHeight - window.innerHeight;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      
+      // Обновление прогресс-бара
+      if (total > 0) {
+        const progressPercentage = (scrolled / total) * 100;
+        progressBar.style.width = `${progressPercentage}%`;
+      }
+
+      // Видимость кнопки "Наверх"
       if (scrolled > total * 0.4) {
         btn.classList.add('visible');
       } else {
         btn.classList.remove('visible');
       }
     });
+
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ===== LIGHTBOX =====
+    // ===== ОПТИМИЗИРОВАННЫЙ LIGHTBOX С ПРЕДЗАГРУЗКОЙ =====
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxCounter = document.getElementById('lightboxCounter');
-    const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
+    const galleryImages = Array.from(document.querySelectorAll('.gallery-item img'));
+    
+    // Формируем кэш-массив ссылок высокого разрешения
+    const highResUrls = galleryImages.map(img => img.src.replace('w=600', 'w=1400'));
+    const preloadedImages = [];
     let currentIndex = 0;
+
+    // Фоновая предзагрузка конкретного индекса
+    function preloadImage(index) {
+      const idx = (index + highResUrls.length) % highResUrls.length;
+      if (!preloadedImages[idx]) {
+        preloadedImages[idx] = new Image();
+        preloadedImages[idx].src = highResUrls[idx];
+      }
+    }
+
+    // Умный прелоад соседей (следующая и предыдущая)
+    function preloadNeighbors(index) {
+      preloadImage(index + 1);
+      preloadImage(index - 1);
+    }
 
     function openLightbox(index) {
       currentIndex = index;
-      const img = galleryItems[index];
-      lightboxImg.src = img.src.replace('w=600', 'w=1400');
-      lightboxImg.alt = img.alt;
-      lightboxCounter.textContent = (index + 1) + ' / ' + galleryItems.length;
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
+      
+      // Мгновенно ставим картинку (если она уже в кэше — покажется сразу без фриза)
+      lightboxImg.src = highResUrls[index];
+      lightboxImg.alt = galleryImages[index].alt;
+      lightboxCounter.textContent = (index + 1) + ' / ' + galleryImages.length;
+      
+      preloadNeighbors(index);
     }
 
     function closeLightbox() {
@@ -268,17 +286,24 @@
     }
 
     function goTo(index) {
-      currentIndex = (index + galleryItems.length) % galleryItems.length;
+      currentIndex = (index + galleryImages.length) % galleryImages.length;
       lightboxImg.classList.add('fading');
+      
+      // Предзагружаем цель на случай, если ее еще нет
+      preloadImage(currentIndex);
+
       setTimeout(() => {
-        lightboxImg.src = galleryItems[currentIndex].src.replace('w=600', 'w=1400');
-        lightboxImg.alt = galleryItems[currentIndex].alt;
-        lightboxCounter.textContent = (currentIndex + 1) + ' / ' + galleryItems.length;
+        lightboxImg.src = highResUrls[currentIndex];
+        lightboxImg.alt = galleryImages[currentIndex].alt;
+        lightboxCounter.textContent = (currentIndex + 1) + ' / ' + galleryImages.length;
         lightboxImg.classList.remove('fading');
-      }, 200);
+        
+        // Как только переключили — готовим следующие скрытые изображения
+        preloadNeighbors(currentIndex);
+      }, 150); // Сократили тайм-аут анимации для быстрого отклика
     }
 
-    galleryItems.forEach((img, i) => {
+    galleryImages.forEach((img, i) => {
       img.parentElement.addEventListener('click', () => openLightbox(i));
     });
 
@@ -297,17 +322,19 @@
       if (e.key === 'ArrowRight') goTo(currentIndex + 1);
     });
 
-    // Свайп на мобильных
+    // Свайпы на мобильных
     let touchStartX = 0;
     lightbox.addEventListener('touchstart', (e) => {
       touchStartX = e.touches[0].clientX;
     }, { passive: true });
+    
     lightbox.addEventListener('touchend', (e) => {
       const dx = e.changedTouches[0].clientX - touchStartX;
       if (Math.abs(dx) > 50) goTo(currentIndex + (dx < 0 ? 1 : -1));
     }, { passive: true });
     // ===== END LIGHTBOX =====
 
+    // Скролл-анимации элементов
     const revealElements = document.querySelectorAll('.reveal');
     const revealOnScroll = () => {
       const windowHeight = window.innerHeight;
