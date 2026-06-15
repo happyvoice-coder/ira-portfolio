@@ -46,48 +46,27 @@
   100% { left: 100%; }
 }
 
+/* ПРОГРЕСС-БАР СКРОЛЛА */
+.scroll-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px; /* Тонкая аккуратная линия */
+  background: transparent;
+  z-index: 1001; /* Поверх навигации */
+  pointer-events: none;
+}
+
+#scrollProgress {
+  height: 100%;
+  width: 0%;
+  background: var(--pink-dark);
+  transition: width 0.1s ease-out;
+}
+
 /* =====================================================
    КАК ПОМЕНЯТЬ ШРИФТЫ (читай внимательно, это просто)
-   =====================================================
-   Сайт использует 3 «слота» шрифтов — они объявлены чуть ниже
-   как переменные --font-serif / --font-script / --font-sans.
-   Все элементы сайта берут шрифт из этих переменных, поэтому
-   менять нужно только в ДВУХ местах:
-
-   ШАГ 1. Загрузка шрифта (файл index.html)
-   -----------------------------------------
-   В файле index.html, в самом <head>, есть строка вида:
-     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:..." rel="stylesheet" />
-   Зайди на https://fonts.google.com, выбери нужный шрифт,
-   нажми "Get font" -> "Get embed code" и скопируй ссылку <link>
-   целиком — она ЗАМЕНЯЕТ (или дополняет через &family=...) текущую.
-
-   ШАГ 2. Подключение шрифта к сайту (этот файл, переменные ниже)
-   -----------------------------------------
-   Впиши точное название шрифта (как оно написано в ссылке из
-   шага 1, с пробелом вместо "+") в одну из переменных:
-
-     --font-serif  — главный «вывесочный» шрифт:
-                     логотип BYBOLDENKOI, заголовки разделов
-                     (ПОРТФОЛИО, СТОИМОСТЬ УСЛУГ), цены, заголовки
-                     карточек прайса. Сейчас: Cormorant Garamond.
-
-     --font-script — рукописный акцентный шрифт:
-                     надпись "избранное" над "ПОРТФОЛИО".
-                     Сейчас: Caveat.
-
-     --font-sans   — основной текст: меню навигации, теги,
-                     подписи к ценам, текст в футере и т.д.
-                     Сейчас: Montserrat.
-
-   Пример: хочешь заменить Montserrat на "Inter".
-     1) В index.html добавляешь в ссылку Google Fonts &family=Inter:wght@300;400;500
-     2) Здесь меняешь: --font-sans: 'Inter', sans-serif;
-   Готово — все элементы, использующие --font-sans, обновятся сами.
-
-   ВАЖНО: указывай в ссылке Google Fonts все нужные "веса" (Weight),
-   которые используются в сайте — иначе шрифт подгрузится, но
-   нужная "тонкость/жирность" (300/400/500/600) не сработает.
    ===================================================== */
 
 /* =====================
@@ -102,7 +81,6 @@
   --pink:       #E8C5C8;
   --pink-dark:  #c9a0a4;
 
-  /* Шрифты сайта — подробная инструкция по замене написана выше */
   --font-serif:  'Cormorant Garamond', Georgia, serif;
   --font-script: 'Caveat', cursive;
   --font-sans:   'Montserrat', sans-serif;
@@ -177,13 +155,6 @@ ul  { list-style: none; }
 ======================== */
 .hero {
   padding-top: 80px;
-  /* min-height: 100vh; — убрано: на экранах, где содержимое hero
-     не занимало весь экран, эта строка растягивала блок на всю
-     высоту окна и создавала большой пустой отступ перед "Портфолио".
-     Теперь высота секции = высота её содержимого. Если нужно
-     вернуть «полноэкранный» эффект, можно поставить, например,
-     min-height: 90vh; — но тогда лишнее пространство снова может
-     появиться на низких/широких экранах. */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -194,9 +165,6 @@ ul  { list-style: none; }
 
 .hero-logo-block {
   text-align: center;
-  /* Было: padding: 80px var(--side-pad) 40px;
-     Сделано отзывчивым через clamp() — на мобильных верх/низ
-     отступа меньше, на широких экранах остаётся похожим на прежнее */
   padding: clamp(24px, 6vw, 64px) var(--side-pad) clamp(16px, 3vw, 40px);
   position: relative;
   z-index: 2;
@@ -269,8 +237,6 @@ ul  { list-style: none; }
 
 .hero-arrow {
   display: block;
-  /* Было: padding: 16px 24px 24px; — уменьшено, чтобы сократить
-     отступ перед "Портфолио" */
   padding: 8px 24px 8px;
   opacity: 0.5;
   transition: opacity 0.3s, transform 0.3s;
@@ -314,8 +280,6 @@ section {
 ======================== */
 .portfolio {
   background: var(--white);
-  /* Уменьшенный верхний отступ — секция начинается сразу
-     после стрелки, без лишнего пустого места */
   padding-top: clamp(16px, 3vw, 36px);
 }
 
@@ -332,6 +296,7 @@ section {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeUp 0.7s ease forwards;
+  cursor: pointer;
 }
 
 .gallery-item img {
@@ -387,11 +352,6 @@ section {
   border-right: 1px solid var(--gray-mid);
 }
 .pricing-card:last-child { border-right: none; }
-
-/* Карточка "Свадебная, праздничная" раньше была чёрной с розовым
-   текстом. Теперь оформлена так же, как остальные две колонки —
-   белый фон и чёрный текст (специальные переопределения убраны,
-   карточка наследует обычные стили .pricing-card). */
 
 .pricing-card-top { margin-bottom: 28px; }
 
@@ -525,8 +485,6 @@ section {
 .footer {
   background: var(--black);
   color: var(--white);
-  /* Уменьшен верхний отступ (было clamp(60px, 8vw, 100px)) —
-     футер "снизу" стал менее растянутым по высоте */
   padding: clamp(40px, 6vw, 72px) var(--side-pad) 32px;
 }
 
@@ -537,7 +495,6 @@ section {
   align-items: flex-end;
   justify-content: space-between;
   gap: 48px;
-  /* Уменьшен отступ перед разделительной линией (было 60px) */
   padding-bottom: 40px;
   border-bottom: 1px solid rgba(255,255,255,0.15);
 }
@@ -607,10 +564,9 @@ section {
 /* НИЖНЯЯ ПАНЕЛЬ */
 .footer-bottom {
   max-width: var(--max-w);
-  /* Уменьшен отступ сверху (было 32px) */
   margin: 24px auto 0;
   display: flex;
-  justify-content: space-between; /* Разносит элементы по краям */
+  justify-content: space-between; 
   align-items: center;
   gap: 20px;
 }
@@ -627,7 +583,7 @@ section {
   font-size: 11px;
   letter-spacing: 0.1em;
   color: #777777;
-  text-align: right; /* Строго под кнопками справа */
+  text-align: right; 
 }
 
 .footer-author a {
@@ -679,14 +635,11 @@ section {
 
 @media (max-width: 600px) {
   .nav-links { display: none; }
-
-  /* Меньше отступ сверху hero на мобильных — навигация там ниже */
   .hero { padding-top: 64px; }
   .hero-logo-block { padding-top: 16px; padding-bottom: 12px; }
   .hero-arrow { padding: 4px 24px 4px; }
   .portfolio { padding-top: 12px; }
 
-  /* Фикс для мобильного Pinterest (2 колонки) */
   .gallery-masonry {
     column-count: 2;
     column-gap: 12px;
@@ -784,7 +737,7 @@ section {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(0,0,0,0.92);
+  background: rgba(0,0,0,0.94);
   align-items: center;
   justify-content: center;
   touch-action: pan-y;
@@ -809,7 +762,7 @@ section {
   width: auto;
   height: auto;
   border: 1px solid rgba(255,255,255,0.08);
-  transition: opacity 0.25s ease;
+  transition: opacity 0.15s ease-out; /* Ускорили появление для отзывчивости */
 }
 .lightbox-img.fading { opacity: 0; }
 
@@ -858,8 +811,6 @@ section {
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
-
-.gallery-item { cursor: pointer; }
 
 @media (max-width: 600px) {
   .lightbox-btn { width: 40px; height: 40px; font-size: 16px; }
