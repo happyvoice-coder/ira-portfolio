@@ -2,15 +2,15 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>BYBOLDENKOI — Фотограф</title>
   
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23111111'/><text x='50' y='71' font-family='Georgia, %27Times New Roman%27, serif' font-size='62' fill='%23ffffff' text-anchor='middle'>B</text></svg>">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Caveat:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -30,6 +30,7 @@
       <li><a href="#portfolio">Портфолио</a></li>
       <li><a href="#pricing">Прайс</a></li>
       <li><a href="#contacts">Контакты</a></li>
+      <li><a href="#" id="openOfferLink">Договор</a></li>
     </ul>
   </nav>
 
@@ -44,6 +45,7 @@
         src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1400&q=80"
         alt="Главное фото"
         class="hero-img"
+        fetchpriority="high"
       />
       <div class="hero-frame"></div>
     </div>
@@ -123,7 +125,7 @@
         </div>
         <ul class="pricing-list">
           <li>
-            <span class="pricing-duration">with чел.</span>
+            <span class="pricing-duration">с чел.</span>
             <span class="pricing-dots"></span>
             <span class="pricing-price">40 руб.</span>
           </li>
@@ -176,7 +178,7 @@
     </div>
     
     <div class="footer-bottom">
-      <p class="footer-copy">© 2026 BYBOLDENKOI. Все права защищены.</p>
+      <p class="footer-copy">© 2026 BYBOLDENKOI. Все права защищены. <a href="#" id="openOfferFooter" style="color: inherit; text-decoration: underline; margin-left: 10px;">Договор оферты</a></p>
       <p class="footer-author">Сайт разработал <a href="https://www.instagram.com/pilnik1/" target="_blank" rel="noopener noreferrer">Alexander</a></p>
     </div>
   </footer>
@@ -188,6 +190,7 @@
     </svg>
   </button>
 
+  <!-- Галерея / Лайтбокс -->
   <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true">
     <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">&#x2715;</button>
     <button class="lightbox-btn lightbox-prev" id="lightboxPrev" aria-label="Предыдущее">&#8592;</button>
@@ -198,61 +201,128 @@
     <div class="lightbox-counter" id="lightboxCounter"></div>
   </div>
 
+  <!-- Модальное окно Договора публичной оферты -->
+  <div class="lightbox-overlay" id="offerModal" role="dialog" aria-modal="true" style="z-index: 10000;">
+    <div class="offer-modal-content" style="background: #fff; color: #111; max-width: 800px; width: 90%; max-height: 80vh; overflow-y: auto; padding: 30px; position: relative; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.6;">
+      <button class="lightbox-close" id="offerClose" style="color: #111; top: 15px; right: 15px;">&#x2715;</button>
+      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 28px; margin-bottom: 20px; text-align: center;">ПУБЛИЧНАЯ ОФЕРТА<br><small style="font-size: 16px;">на оказание фотоуслуг</small></h2>
+      
+      <p><strong>1. ОБЩИЕ ПОЛОЖЕНИЯ</strong><br>
+      1.1. Данный документ является официальным предложением (публичной офертой) фотографа BYBOLDENKOI (далее — Исполнитель) и содержит все существенные условия договора оказания фотоуслуг.<br>
+      1.2. Оплата задатка или услуги является полным и безоговорочным акцептом данной оферты (ст. 407 Гражданского кодекса Республики Беларусь).</p>
+
+      <p><strong>2. БРОНИРОВАНИЕ И ОПЛАТА</strong><br>
+      2.1. Даты и время съёмки бронируются после внесения задатка.<br>
+      2.2. Задаток является гарантией бронирования времени. В случае отмены съёмки по инициативе Заказчика менее чем за 3 суток до даты съёмки, сумма задатка не возвращается.<br>
+      2.3. Полный расчёт производится в день проведения съёмки по окончании процесса работы.</p>
+
+      <p><strong>3. АВТОРСКИЕ ПРАВА И ИСПОЛЬЗОВАНИЕ ФОТОГРАФИЙ</strong><br>
+      3.1. Согласно Закону Республики Беларусь «Об авторском праве и смежных правах», исключительные авторские права на все полученные материалы принадлежат Исполнителю (фотографу).<br>
+      3.2. Заказчик получает право на личное некоммерческое использование фотографий (публикация в личных соцсетях, печать для личного архива).<br>
+      3.3. Исполнитель имеет право использовать полученные фотографии в своём портфолио, на сайте, в социальных сетях и на выставках.<br>
+      3.4. Если Заказчик желает конфиденциальную съёмку (без права публикации фотографом), об этом необходимо уведомить Исполнителя <strong>до начала съёмки</strong>.</p>
+
+      <p><strong>4. ПОРЯДОК СДАЧИ И СРОКИ</strong><br>
+      4.1. Готовые фотографии передаются через файлообменник в формате JPEG (sRGB).<br>
+      4.2. Исходные файлы в формате RAW являются рабочим материалом фотографа и <strong>заказчику не передаются</strong>.<br>
+      4.3. Срок готовности фотографий — до 7 рабочих дней.<br>
+      4.4. Готовые материалы хранятся на облачном диске в течение 30 календарных дней, после чего могут быть удалены.</p>
+
+      <p><strong>5. ПРОЧИЕ УСЛОВИЯ</strong><br>
+      5.1. Аренда фотостудии, услуги визажиста, стилиста и входные билеты на локации оплачиваются Заказчиком отдельно.<br>
+      5.2. В случае опоздания Заказчика время съёмки не продлевается.</p>
+    </div>
+  </div>
+
   <script>
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
     
-    // Функция скрытия экрана загрузки (прелоадера) после полной готовности сайта
+    // Прелоадер
     window.addEventListener('load', () => {
       const preloader = document.getElementById('preloader');
       setTimeout(() => {
         preloader.classList.add('loaded');
-        setTimeout(() => {
-          preloader.style.display = 'none';
-        }, 500);
+        setTimeout(() => { preloader.style.display = 'none'; }, 500);
       }, 300);
     });
 
-    // Логика тонкого прогресс-бара и кнопки "Наверх"
+    // Оптимизированный скролл (requestAnimationFrame)
     const btn = document.getElementById('scrollTop');
     const progressBar = document.getElementById('scrollProgress');
+    const revealElements = document.querySelectorAll('.reveal');
+    let isScrolling = false;
 
     window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY;
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      
-      // Вычисление процента прокрутки для полоски
-      if (total > 0) {
-        const progressPercentage = (scrolled / total) * 100;
-        progressBar.style.width = `${progressPercentage}%`;
-      }
+      if (!isScrolling) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.scrollY;
+          const total = document.documentElement.scrollHeight - window.innerHeight;
+          
+          if (total > 0) {
+            progressBar.style.width = `${(scrolled / total) * 100}%`;
+          }
 
-      // Показывать кнопку "Наверх" только если проскроллили 40% страницы
-      if (scrolled > total * 0.4) {
-        btn.classList.add('visible');
-      } else {
-        btn.classList.remove('visible');
-      }
-    });
+          if (scrolled > total * 0.4) {
+            btn.classList.add('visible');
+          } else {
+            btn.classList.remove('visible');
+          }
 
-    // Плавный скролл наверх по клику
+          // Появление элементов при скролле
+          revealElements.forEach(el => {
+            const elementTop = el.getBoundingClientRect().top;
+            if (elementTop < window.innerHeight - 100) {
+              el.classList.add('reveal-active');
+            }
+          });
+
+          isScrolling = false;
+        });
+        isScrolling = true;
+      }
+    }, { passive: true });
+
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Логика работы умной галереи (Лайтбокса) с фоновой предзагрузкой
+    // Модальное окно Оферты
+    const offerModal = document.getElementById('offerModal');
+    const openOfferLinks = [document.getElementById('openOfferLink'), document.getElementById('openOfferFooter')];
+    const offerClose = document.getElementById('offerClose');
+
+    openOfferLinks.forEach(link => {
+      if (link) {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          offerModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      }
+    });
+
+    function closeOffer() {
+      offerModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    offerClose.addEventListener('click', closeOffer);
+    offerModal.addEventListener('click', (e) => {
+      if (e.target === offerModal) closeOffer();
+    });
+
+    // Галерея / Лайтбокс
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxCounter = document.getElementById('lightboxCounter');
     const galleryImages = Array.from(document.querySelectorAll('.gallery-item img'));
     
-    // Создаем список ссылок на большие картинки высокого качества (w=1400)
     const highResUrls = galleryImages.map(img => img.src.replace('w=600', 'w=1400'));
     const preloadedImages = [];
     let currentIndex = 0;
 
-    // Внутренняя фоновая загрузка картинки в память браузера
     function preloadImage(index) {
       const idx = (index + highResUrls.length) % highResUrls.length;
       if (!preloadedImages[idx]) {
@@ -261,17 +331,15 @@
       }
     }
 
-    // Предзагрузка "соседей" (следующей и предыдущей картинки)
     function preloadNeighbors(index) {
       preloadImage(index + 1);
       preloadImage(index - 1);
     }
 
-    // Открытие окна просмотра
     function openLightbox(index) {
       currentIndex = index;
       lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden'; // Отключаем прокрутку самого сайта
+      document.body.style.overflow = 'hidden';
       
       lightboxImg.src = highResUrls[index];
       lightboxImg.alt = galleryImages[index].alt;
@@ -280,16 +348,14 @@
       preloadNeighbors(index);
     }
 
-    // Закрытие окна просмотра
     function closeLightbox() {
       lightbox.classList.remove('active');
-      document.body.style.overflow = ''; // Возвращаем прокрутку сайту
+      document.body.style.overflow = '';
     }
 
-    // Переключение картинок вперед / назад (убирает тормоза)
     function goTo(index) {
       currentIndex = (index + galleryImages.length) % galleryImages.length;
-      lightboxImg.classList.add('fading'); // Быстрое плавное скрытие текущей картинки
+      lightboxImg.classList.add('fading');
       
       preloadImage(currentIndex);
 
@@ -297,36 +363,32 @@
         lightboxImg.src = highResUrls[currentIndex];
         lightboxImg.alt = galleryImages[currentIndex].alt;
         lightboxCounter.textContent = (currentIndex + 1) + ' / ' + galleryImages.length;
-        lightboxImg.classList.remove('fading'); // Плавное появление новой картинки
+        lightboxImg.classList.remove('fading');
         
-        preloadNeighbors(currentIndex); // Предзагружаем следующие
+        preloadNeighbors(currentIndex);
       }, 150);
     }
 
-    // Вешаем событие клика на все миниатюры
     galleryImages.forEach((img, i) => {
       img.parentElement.addEventListener('click', () => openLightbox(i));
     });
 
-    // Обработчики кнопок управления лайтбокса
     document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
     document.getElementById('lightboxPrev').addEventListener('click', () => goTo(currentIndex - 1));
     document.getElementById('lightboxNext').addEventListener('click', () => goTo(currentIndex + 1));
 
-    // Закрытие по клику на темную область вокруг фото
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) closeLightbox();
     });
 
-    // Управление с клавиатуры
     document.addEventListener('keydown', (e) => {
+      if (offerModal.classList.contains('active') && e.key === 'Escape') closeOffer();
       if (!lightbox.classList.contains('active')) return;
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') goTo(currentIndex - 1);
       if (e.key === 'ArrowRight') goTo(currentIndex + 1);
     });
 
-    // Поддержка свайпов на телефонах
     let touchStartX = 0;
     lightbox.addEventListener('touchstart', (e) => {
       touchStartX = e.touches[0].clientX;
@@ -336,23 +398,6 @@
       const dx = e.changedTouches[0].clientX - touchStartX;
       if (Math.abs(dx) > 50) goTo(currentIndex + (dx < 0 ? 1 : -1));
     }, { passive: true });
-
-    // Появление блоков при прокрутке страницы вниз
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealOnScroll = () => {
-      const windowHeight = window.innerHeight;
-      revealElements.forEach(el => {
-        const elementTop = el.getBoundingClientRect().top;
-        const elementVisible = 100;
-        if (elementTop < windowHeight - elementVisible) {
-          el.classList.add('reveal-active');
-        } else {
-          el.classList.remove('reveal-active');
-        }
-      });
-    };
-    window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('load', revealOnScroll);
   </script>
 
 </body>
